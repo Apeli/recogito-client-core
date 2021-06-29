@@ -135,14 +135,10 @@ const TagWidget = props => {
 
     const [showDelete, setShowDelete] = useState(false);
 
-    console.log("TAGS", all, tags, draftTag);
-
     const selectMarker = (marker) => {
 
         const prev = draftTag.value.trim();
         const updated = marker.title;
-
-        console.log("UPD", marker, updated, prev, draftTag);
 
         const bodies = [
             { type: 'TextualBody', value: marker.title, purpose: 'commenting' },
@@ -240,7 +236,9 @@ const TagWidget = props => {
         </div>
       }
 
-      { tags.length > 0 &&
+      D: { draftTag }
+
+      {/*{ tags.length > 0 &&
         <ul className="r6o-taglist">
           { tags.map(tag =>
             <li key={tag.value} onClick={toggle(tag.value)}>
@@ -258,7 +256,7 @@ const TagWidget = props => {
             </li>
           )}
         </ul>
-      }
+      }*/}
     </div>
     )
 

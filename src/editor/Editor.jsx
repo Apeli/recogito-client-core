@@ -92,7 +92,9 @@ const Editor = props => {
 
         let bodyObj = [...currentAnnotation.bodies, { ...body, ...creationMeta(body) }];
         if (Array.isArray(body)) {
-          bodyObj = body;
+          bodyObj = body.map(body => {
+            return { ...body, ...creationMeta(body) }
+          });
         }
 
         return setCurrentAnnotation(
