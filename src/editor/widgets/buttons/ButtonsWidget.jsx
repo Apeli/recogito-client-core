@@ -158,7 +158,9 @@ const TagWidget = props => {
 
         console.log("PROPS", props);
         setTimeout(() => {
-            // props.onClose(null);
+            let btns = document.querySelectorAll(".r6o-btn");
+            let btn = [...btns].pop();
+            btn.click();
         }, 1000)
 
 
