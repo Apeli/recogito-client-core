@@ -180,7 +180,7 @@ const TagWidget = props => {
         <div class="button-list">
         { markerStyles.map(marker => 
 
-            <button type="button" onClick={selectMarker(marker)}>
+            <button type="button" onClick={onDraftChange(marker.title)}>
               <span>{marker.title}</span>
               <span class="marker-circle" style={'background-color:' + marker.color}></span>
             </button>
