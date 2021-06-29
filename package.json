@@ -1,7 +1,7 @@
 {
-  "name": "@recogito/recogito-client-core",
+  "name": "recogito-client-core-fork",
   "version": "1.2.5",
-  "description": "Core functions, classes and components for RecogitoJS",
+  "description": "Core functions, classes and components for RecogitoJS / Fork by @apeli",
   "main": "src/index.js",
   "scripts": {
     "test": "NODE_ENV=test ./node_modules/.bin/mocha --require @babel/register"
