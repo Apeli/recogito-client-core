@@ -223,7 +223,8 @@ const Editor = props => {
               onRemoveBody,
               onUpsertBody,
               onSetProperty,
-              onSaveAndClose: onOk              
+              onSaveAndClose: onOk,
+              onClose: onOk,              
             })
           )}
           
@@ -250,7 +251,7 @@ const Editor = props => {
 
               <button 
                 className="r6o-btn "
-                onClick={onOk}>{i18n.t('Ok')}</button>
+                onClick={onOk}>{i18n.t('Ok')}...</button>
             </div>
           )}
         </div>
