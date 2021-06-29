@@ -47,7 +47,7 @@ const Editor = props => {
     }, [props.modifiedTarget])
 
     const initResizeObserver = () => {
-        if (window ? .ResizeObserver) {
+        if (window?.ResizeObserver) {
             const resizeObserver = new ResizeObserver(() => {
                 if (!dragged)
                     setPosition(props.wrapperEl, element.current, props.selectedElement);
