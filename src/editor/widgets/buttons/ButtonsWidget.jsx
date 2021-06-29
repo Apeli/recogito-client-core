@@ -144,6 +144,7 @@ const TagWidget = props => {
 
   const buttonClick = marker => {
       console.log("MARKER", marker);
+      selectMarker(marker);
   }
 
   const toggle = tag => _ => {
