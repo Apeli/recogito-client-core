@@ -5,19 +5,25 @@ import i18n from '../../../i18n';
 import Autocomplete from '../Autocomplete';
 
 const getDraftTag = existingDraft =>
-  existingDraft ? existingDraft : {
-    type: 'TextualBody', value: '', purpose: 'commenting', draft: true
-  };
+    existingDraft ? existingDraft : {
+        type: 'TextualBody',
+        value: '',
+        purpose: 'commenting',
+        draft: true
+    };
 
 const getDraftColorTag = existingDraft =>
-  existingDraft ? existingDraft : {
-    type: 'TextualBody', value: '', purpose: 'highlighting', draft: true
-  };
+    existingDraft ? existingDraft : {
+        type: 'TextualBody',
+        value: '',
+        purpose: 'highlighting',
+        draft: true
+    };
 
 /** The basic freetext tag control from original Recogito **/
 const TagWidget = props => {
 
-  const markerStyles = [{
+    const markerStyles = [{
             title: "Kommentti",
             isComment: true,
             color: "rgba(230, 57, 57, 0.62)",
@@ -116,104 +122,104 @@ const TagWidget = props => {
     ];
 
 
-  // All tags (draft + non-draft)
-  const all = props.annotation ? 
-    props.annotation.bodies.filter(b => b.type === 'TextualBody' && b.purpose === 'commenting') : [];
+    // All tags (draft + non-draft)
+    const all = props.annotation ?
+        props.annotation.bodies.filter(b => b.type === 'TextualBody' && b.purpose === 'commenting') : [];
 
-  // Last draft tag goes into the input field
-  const draftTag = getDraftTag(all.slice().reverse().find(b => b.draft)); 
-  const colorTag = getDraftColorTag(all.slice().reverse().find(b => b.draft)); 
+    // Last draft tag goes into the input field
+    const draftTag = getDraftTag(all.slice().reverse().find(b => b.draft));
+    const colorTag = getDraftColorTag(all.slice().reverse().find(b => b.draft));
 
-  // All except draft tag
-  const tags = all.filter(b => b != draftTag);
+    // All except draft tag
+    const tags = all.filter(b => b != draftTag);
 
-  const [ showDelete, setShowDelete ] = useState(false);
+    const [showDelete, setShowDelete] = useState(false);
 
-  console.log("TAGS", all, tags, draftTag);
+    console.log("TAGS", all, tags, draftTag);
 
-  const selectMarker = (marker) => {
+    const selectMarker = (marker) => {
 
-    const prev = draftTag.value.trim();
-    const updated = marker.title;
+        const prev = draftTag.value.trim();
+        const updated = marker.title;
 
-    console.log("UPD", marker, updated, prev, draftTag);
+        console.log("UPD", marker, updated, prev, draftTag);
 
-    const bodies = [
-        {type: 'TextualBody', value: marker.title, purpose: 'commenting'},
-        {type: 'TextualBody', value: marker.color, purpose: 'highlighting'},
-      ],
+        const bodies = [
+            { type: 'TextualBody', value: marker.title, purpose: 'commenting' },
+            { type: 'TextualBody', value: marker.color, purpose: 'highlighting' },
+        ];
 
-    if (prev.length === 0 && updated.length > 0) {
-      // props.onAppendBody([{ ...draftTag, value: updated }]);
-      props.onAppendBody(bodies);
-    } else if (prev.length > 0 && updated.length === 0) {
-      props.onRemoveBody(draftTag);
-    } else {
-      props.onUpdateBody(draftTag, bodies);
+        if (prev.length === 0 && updated.length > 0) {
+            // props.onAppendBody([{ ...draftTag, value: updated }]);
+            props.onAppendBody(bodies);
+        } else if (prev.length > 0 && updated.length === 0) {
+            props.onRemoveBody(draftTag);
+        } else {
+            props.onUpdateBody(draftTag, bodies);
+        }
+
+        setTimeout(() => {
+            addMarkerColor(marker.color)
+        }, 1)
+
     }
 
-    setTimeout(() => {
-      addMarkerColor(marker.color)
-    },1)
+    const addMarkerColor = (color) => {
+        const prev = colorTag.value.trim();
+        const updated = color;
 
-  }
+        console.log("UPD", updated, prev, colorTag);
 
-  const addMarkerColor = (color) => {
-    const prev = colorTag.value.trim();
-    const updated = color;
-
-    console.log("UPD", updated, prev, colorTag);
-
-    if (prev.length === 0 && updated.length > 0) {
-      props.onAppendBody({ ...colorTag, value: updated });
-    } else if (prev.length > 0 && updated.length === 0) {
-      props.onRemoveBody(colorTag);
-    } else {
-      props.onUpdateBody(colorTag, { ...colorTag, value: updated });
+        if (prev.length === 0 && updated.length > 0) {
+            props.onAppendBody({ ...colorTag, value: updated });
+        } else if (prev.length > 0 && updated.length === 0) {
+            props.onRemoveBody(colorTag);
+        } else {
+            props.onUpdateBody(colorTag, { ...colorTag, value: updated });
+        }
     }
-  }
 
-  const buttonClick = marker => {
-      console.log("MARKER", marker);
-      selectMarker(marker);
-  }
-
-  const toggle = tag => _ => {
-    if (showDelete === tag) // Removes delete button
-      setShowDelete(false);
-    else
-      setShowDelete(tag); // Sets delete button on a different tag
-  }
-
-  const onDelete = tag => evt => {
-    evt.stopPropagation();
-    props.onRemoveBody(tag);
-  }
-
-  const onDraftChange = value => {
-    const prev = draftTag.value.trim();
-    const updated = value.trim();
-
-    if (prev.length === 0 && updated.length > 0) {
-      props.onAppendBody({ ...draftTag, value: updated });
-    } else if (prev.length > 0 && updated.length === 0) {
-      props.onRemoveBody(draftTag);
-    } else {
-      props.onUpdateBody(draftTag, { ...draftTag, value: updated });
+    const buttonClick = marker => {
+        console.log("MARKER", marker);
+        selectMarker(marker);
     }
-  }
 
-  const onSubmit = tag => {
-    const { draft, ...toSubmit } =  { ...draftTag, value: tag }; 
-    if (draftTag.value.trim().length === 0) {
-      props.onAppendBody(toSubmit);
-    } else {
-      props.onUpdateBody(draftTag, toSubmit); 
+    const toggle = tag => _ => {
+        if (showDelete === tag) // Removes delete button
+            setShowDelete(false);
+        else
+            setShowDelete(tag); // Sets delete button on a different tag
     }
-  }
 
-  return (
-    <div className="r6o-widget r6o-button r6o-nodrag">
+    const onDelete = tag => evt => {
+        evt.stopPropagation();
+        props.onRemoveBody(tag);
+    }
+
+    const onDraftChange = value => {
+        const prev = draftTag.value.trim();
+        const updated = value.trim();
+
+        if (prev.length === 0 && updated.length > 0) {
+            props.onAppendBody({ ...draftTag, value: updated });
+        } else if (prev.length > 0 && updated.length === 0) {
+            props.onRemoveBody(draftTag);
+        } else {
+            props.onUpdateBody(draftTag, { ...draftTag, value: updated });
+        }
+    }
+
+    const onSubmit = tag => {
+        const { draft, ...toSubmit } = { ...draftTag, value: tag };
+        if (draftTag.value.trim().length === 0) {
+            props.onAppendBody(toSubmit);
+        } else {
+            props.onUpdateBody(draftTag, toSubmit);
+        }
+    }
+
+    return (
+        <div className="r6o-widget r6o-button r6o-nodrag">
 
       { markerStyles.length > 0 && 
         <div class="button-list">
@@ -248,7 +254,7 @@ const TagWidget = props => {
         </ul>
       }
     </div>
-  )
+    )
 
 };
 
