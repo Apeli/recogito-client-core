@@ -83,7 +83,10 @@ const Editor = props => {
 
     const onAppendBody = body => {
 
-        console.log("APpend", body, currentAnnotation, creationMeta(body));
+        console.log("onAppendBody");
+        console.log(body);
+        console.log(currentAnnotation);
+        console.log(creationMeta(body));
 
         return setCurrentAnnotation(
             currentAnnotation.clone({
