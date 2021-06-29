@@ -158,7 +158,7 @@ const TagWidget = props => {
 
         console.log("PROPS", props);
         setTimeout(() => {
-            props.onClose(null);
+            // props.onClose(null);
         }, 1000)
 
 
