@@ -157,6 +157,7 @@ const TagWidget = props => {
         }
 
         console.log("PROPS", props);
+        props.onSaveAndClose();
 
     }
 
