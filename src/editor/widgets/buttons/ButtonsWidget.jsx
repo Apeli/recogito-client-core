@@ -122,6 +122,21 @@ const TagWidget = props => {
 
   const [ showDelete, setShowDelete ] = useState(false);
 
+  const selectMarker = marker => {
+
+    const prev = draftTag.value.trim();
+    const updated = marker.title;
+
+    if (prev.length === 0 && updated.length > 0) {
+      props.onAppendBody({ ...draftTag, value: updated });
+    } else if (prev.length > 0 && updated.length === 0) {
+      props.onRemoveBody(draftTag);
+    } else {
+      props.onUpdateBody(draftTag, { ...draftTag, value: updated });
+    }
+
+  }
+
   const toggle = tag => _ => {
     if (showDelete === tag) // Removes delete button
       setShowDelete(false);
@@ -163,7 +178,7 @@ const TagWidget = props => {
         <div class="button-list">
         { markerStyles.map(marker => 
 
-            <button type="button">
+            <button type="button" onClick={selectMarker(marker)}>
               <span>{marker.title}</span>
               <span class="marker-circle" style={'background-color:' + marker.color}></span>
             </button>
@@ -191,16 +206,6 @@ const TagWidget = props => {
           )}
         </ul>
       }*/}
-
-      {!props.readOnly &&
-        <Autocomplete
-          focus={props.focus}
-          placeholder={i18n.t('Add tag...')}
-          initialValue={draftTag.value}
-          onChange={onDraftChange}
-          onSubmit={onSubmit}
-          vocabulary={props.vocabulary || []} />
-      }
     </div>
   )
 
