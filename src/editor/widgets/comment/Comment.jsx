@@ -9,11 +9,12 @@ import i18n from '../../../i18n';
 /** A single comment inside the CommentWidget **/
 const Comment = props => {
 
-  const [ isEditable, setIsEditable ] = useState(false);
+  const [ setIsEditable ] = useState(false);
   const [ isMenuVisible, setIsMenuVisible ] = useState(false);
 
   console.log("Comment", isEditable, props.readOnly);
 
+  const isEditable = props.readOnly != true;
 
   const onMakeEditable = _ => {
     setIsEditable(true);
