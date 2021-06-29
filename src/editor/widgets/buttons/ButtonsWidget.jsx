@@ -161,16 +161,14 @@ const TagWidget = props => {
 
       { markerStyles.length > 0 && 
 
-        {
-          markerStyles.map(marker => 
+        { markerStyles.map(marker => 
 
             <button type="button">
               <span>{marker.title}</span>
               <span class="marker-circle" style={'background-color:' + marker.color}></span>
             </button>
 
-          )}
-
+        )}
 
       }
 
