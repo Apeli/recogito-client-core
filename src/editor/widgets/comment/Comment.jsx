@@ -12,9 +12,13 @@ const Comment = props => {
   const [ isEditable, setIsEditable ] = useState(false);
   const [ isMenuVisible, setIsMenuVisible ] = useState(false);
 
+  console.log("Comment", isEditable, props.readOnly);
+
+
   const onMakeEditable = _ => {
     setIsEditable(true);
     setIsMenuVisible(false);
+    console.log("Comment#2", isEditable, props.readOnly);
   }
 
   const onDelete = _ => {
@@ -50,6 +54,7 @@ const Comment = props => {
   ) : (
     <div className={ isEditable ? "r6o-widget comment editable" : "r6o-widget comment"}>
       <TextEntryField 
+        editable={isEditable}
         content={props.body.value} 
         onChange={onUpdateComment} 
         onSaveAndClose={props.onSaveAndClose}
