@@ -70,18 +70,7 @@ const Comment = props => {
             onSaveAndClose={props.onSaveAndClose}
           /> } 
           
-      <div 
-        className={isMenuVisible ? "r6o-icon r6o-arrow-down r6o-nodrag r6o-menu-open" : "r6o-icon r6o-arrow-down r6o-nodrag"} 
-        onClick={() => setIsMenuVisible(!isMenuVisible)}>
-        <ChevronDownIcon width={12} />
-      </div>
-
-      { isMenuVisible && 
-        <DropdownMenu 
-          onEdit={onMakeEditable} 
-          onDelete={onDelete} 
-          onClickOutside={() => setIsMenuVisible(false)} /> 
-      }
+      
     </div>
   )
 
