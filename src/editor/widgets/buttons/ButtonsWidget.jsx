@@ -181,7 +181,8 @@ const TagWidget = props => {
 
     const buttonClick = marker => {
         console.log("MARKER", marker);
-        selectMarker(marker);
+        // selectMarker(marker);
+        selectedMarker = marker;
     }
 
     const toggle = tag => _ => {
@@ -211,12 +212,17 @@ const TagWidget = props => {
 
     const onSubmit = tag => {
         const { draft, ...toSubmit } = { ...draftTag, value: tag };
+
+        console.log("onSubmit", toSubmit, selectedMarker);
+
         if (draftTag.value.trim().length === 0) {
             props.onAppendBody(toSubmit);
         } else {
             props.onUpdateBody(draftTag, toSubmit);
         }
     }
+
+    let selectedMarker = null;
 
     return (
         <div className="r6o-widget r6o-button r6o-nodrag">
