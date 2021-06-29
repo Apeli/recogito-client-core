@@ -142,6 +142,10 @@ const TagWidget = props => {
 
   }
 
+  const buttonClick = marker => {
+      console.log("MARKER", marker);
+  }
+
   const toggle = tag => _ => {
     if (showDelete === tag) // Removes delete button
       setShowDelete(false);
@@ -183,7 +187,7 @@ const TagWidget = props => {
         <div class="button-list">
         { markerStyles.map(marker => 
 
-            <button type="button" xxxonClick="onDraftChange(marker.title)">
+            <button type="button" onClick="buttonClick(marker.title)">
               <span>{marker.title}</span>
               <span class="marker-circle" style={'background-color:' + marker.color}></span>
             </button>
