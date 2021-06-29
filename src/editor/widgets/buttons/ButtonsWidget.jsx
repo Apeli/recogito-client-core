@@ -157,7 +157,7 @@ const TagWidget = props => {
         }
 
         if (marker.title.toLowerCase() === "kommentti") {
-          let ta = document.querySelectorAll(".r6o-editable-text").pop();
+          let ta = document.querySelectorAll(".r6o-editable-text")[0];
           ta.focus();
           return;
         }
