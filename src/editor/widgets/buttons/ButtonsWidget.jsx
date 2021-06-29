@@ -236,7 +236,7 @@ const TagWidget = props => {
         </div>
       }
 
-      D: { draftTag }
+      D: { tags }
 
       {/*{ tags.length > 0 &&
         <ul className="r6o-taglist">
