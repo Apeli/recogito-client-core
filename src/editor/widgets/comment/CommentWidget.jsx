@@ -94,14 +94,13 @@ const CommentWidget = props => {
           key={idx} 
           env={props.env}
           purposeSelector={props.purposeSelector}
-          readOnly={isReadOnlyComment(body, props)} 
           body={body} 
           onUpdate={props.onUpdateBody}
           onDelete={props.onRemoveBody}
           onSaveAndClose={props.onSaveAndClose} />
       )}
 
-      { !props.readOnly && props.annotation &&
+      { comments.length == 0 && !props.readOnly && props.annotation &&
         <div className="r6o-widget comment editable">
           <TextEntryField
             focus={props.focus}
