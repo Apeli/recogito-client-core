@@ -156,25 +156,8 @@ const TagWidget = props => {
             props.onUpdateBody(draftTag, bodies);
         }
 
-        // setTimeout(() => {
-        //     addMarkerColor(marker.color)
-        // }, 1)
+        props.onOk();
 
-    }
-
-    const addMarkerColor = (color) => {
-        const prev = colorTag.value.trim();
-        const updated = color;
-
-        console.log("UPD", updated, prev, colorTag);
-
-        if (prev.length === 0 && updated.length > 0) {
-            props.onAppendBody({ ...colorTag, value: updated });
-        } else if (prev.length > 0 && updated.length === 0) {
-            props.onRemoveBody(colorTag);
-        } else {
-            props.onUpdateBody(colorTag, { ...colorTag, value: updated });
-        }
     }
 
     const buttonClick = marker => {
@@ -238,9 +221,7 @@ const TagWidget = props => {
         </div>
       }
 
-
-
-      { tags.length > 0 &&
+      {/*{ tags.length > 0 &&
         <ul className="r6o-taglist">
           { tags.map(tag =>
             <li key={tag.value} onClick={toggle(tag.value)}>
@@ -258,7 +239,7 @@ const TagWidget = props => {
             </li>
           )}
         </ul>
-      }
+      }*/}
     </div>
     )
 
