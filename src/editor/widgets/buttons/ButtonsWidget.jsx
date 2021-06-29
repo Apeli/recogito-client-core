@@ -156,7 +156,7 @@ const TagWidget = props => {
             props.onUpdateBody(draftTag, bodies);
         }
 
-        props.onOk();
+        log("PROPS", props);
 
     }
 
