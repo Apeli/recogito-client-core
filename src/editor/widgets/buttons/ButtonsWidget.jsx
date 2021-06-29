@@ -122,6 +122,8 @@ const TagWidget = props => {
 
   const [ showDelete, setShowDelete ] = useState(false);
 
+  console.log("TAGS", all, tags, draftTag);
+
   const selectMarker = marker => {
 
     const prev = draftTag.value.trim();
@@ -176,7 +178,7 @@ const TagWidget = props => {
   return (
     <div className="r6o-widget r6o-button r6o-nodrag">
 
-      { markerStyles.length > 0 && 
+      {/*{ markerStyles.length > 0 && 
         <div class="button-list">
         { markerStyles.map(marker => 
 
@@ -187,9 +189,9 @@ const TagWidget = props => {
 
         )}
         </div>
-      }
+      }*/}
 
-      {/*{ tags.length > 0 &&
+      { tags.length > 0 &&
         <ul className="r6o-taglist">
           { tags.map(tag =>
             <li key={tag.value} onClick={toggle(tag.value)}>
@@ -207,7 +209,7 @@ const TagWidget = props => {
             </li>
           )}
         </ul>
-      }*/}
+      }
     </div>
   )
 
