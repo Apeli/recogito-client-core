@@ -227,7 +227,7 @@ const TagWidget = props => {
         <div class="button-list">
         { markerStyles.map(marker => 
 
-            <button type="button" onClick={() => {buttonClick(marker)}}>
+            <button className={tags.length && tags[0] == marker.title ? 'selected' : 'not-selected'} type="button" onClick={() => {buttonClick(marker)}}>
               <span>{marker.title}</span>
               <span class="marker-circle" style={'background-color:' + marker.color}></span>
             </button>
@@ -236,9 +236,9 @@ const TagWidget = props => {
         </div>
       }
 
-      D: { tags }
 
-      {/*{ tags.length > 0 &&
+
+      { tags.length > 0 &&
         <ul className="r6o-taglist">
           { tags.map(tag =>
             <li key={tag.value} onClick={toggle(tag.value)}>
@@ -256,7 +256,7 @@ const TagWidget = props => {
             </li>
           )}
         </ul>
-      }*/}
+      }
     </div>
     )
 
