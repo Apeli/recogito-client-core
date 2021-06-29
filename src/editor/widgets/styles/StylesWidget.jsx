@@ -47,10 +47,10 @@ const StylesWidget = props => {
 
     const [showDelete, setShowDelete] = useState(false);
 
-    const selectMarker = (marker) => {
+    const selectStyle = (style) => {
 
         const prev = draftTag.value.trim();
-        const updated = value.trim();
+        const updated = style.type.trim();
 
         if (prev.length === 0 && updated.length > 0) {
             props.onAppendBody({ ...draftTag, value: updated });
@@ -63,10 +63,8 @@ const StylesWidget = props => {
 
     }
 
-    const buttonClick = marker => {
-        console.log("MARKER", marker);
-        selectMarker(marker);
-        selectedMarker = marker;
+    const buttonClick = style => {
+        selectStyle(style);
     }
 
     const toggle = tag => _ => {
