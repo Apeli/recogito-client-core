@@ -5,6 +5,12 @@ export default class WebAnnotation {
 
   constructor(annotation, opts) {
     this.underlying = annotation;
+
+    console.log("WA Constructor", typeof annotation.body, typeof annotation.body[0])
+
+    if (annotation.body.length && Array.isArray(annotation.body[0])) {
+      this.underlying.body = annotation.body[0];
+    }
     this.opts = opts;
   }
 
@@ -22,7 +28,7 @@ export default class WebAnnotation {
 
   /** Creates a copy of this annotation **/
   clone = (opt_props, opt_opts) => {
-    console.log("WA Clone", this.underlying, opt_props, opt_opts);
+    console.log("WA Clone", this.underlying);
     return new WebAnnotation({ ...this.underlying, ...opt_props}, { ...this.opts, ...opt_opts });
   }
 
