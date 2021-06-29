@@ -9,6 +9,11 @@ const getDraftTag = existingDraft =>
     type: 'TextualBody', value: '', purpose: 'commenting', draft: true
   };
 
+const getDraftColorTag = existingDraft =>
+  existingDraft ? existingDraft : {
+    type: 'TextualBody', value: '', purpose: 'highlighting', draft: true
+  };
+
 /** The basic freetext tag control from original Recogito **/
 const TagWidget = props => {
 
@@ -117,6 +122,7 @@ const TagWidget = props => {
 
   // Last draft tag goes into the input field
   const draftTag = getDraftTag(all.slice().reverse().find(b => b.draft)); 
+  const colorTag = getDraftColorTag(all.slice().reverse().find(b => b.draft)); 
 
   // All except draft tag
   const tags = all.filter(b => b != draftTag);
@@ -140,6 +146,21 @@ const TagWidget = props => {
       props.onUpdateBody(draftTag, { ...draftTag, value: updated });
     }
 
+  }
+
+  const addMarkerColor = (color) => {
+    const prev = colorTag.value.trim();
+    const updated = color;
+
+    console.log("UPD", marker, updated, prev, colorTag);
+
+    if (prev.length === 0 && updated.length > 0) {
+      props.onAppendBody({ ...colorTag, value: updated });
+    } else if (prev.length > 0 && updated.length === 0) {
+      props.onRemoveBody(colorTag);
+    } else {
+      props.onUpdateBody(colorTag, { ...colorTag, value: updated });
+    }
   }
 
   const buttonClick = marker => {
