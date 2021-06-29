@@ -4,6 +4,8 @@ import { CloseIcon } from '../../../Icons';
 import i18n from '../../../i18n';
 import Autocomplete from '../Autocomplete';
 
+import './ButtonsWidget.scss';
+
 const getDraftTag = existingDraft =>
     existingDraft ? existingDraft : {
         type: 'TextualBody',
