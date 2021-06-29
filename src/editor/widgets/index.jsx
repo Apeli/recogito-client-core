@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import CommentWidget from './comment/CommentWidget'
 import TagWidget from './tag/TagWidget';
+import ButtonsWidget from './buttons/ButtonsWidget';
 import WrappedWidget from './WrappedWidget';
 
 /**
@@ -15,12 +16,12 @@ window.ReactDOM = ReactDOM;
 /** Standard widgets included by default **/
 const BUILTIN_WIDGETS = {
   COMMENT: CommentWidget,
-  TAG: TagWidget
+  BUTTONS: ButtonsWidget
 };
 
 /** Defaults to use if there's no overrides from the host app **/
 export const DEFAULT_WIDGETS = [
-  <CommentWidget />, <TagWidget />
+  <CommentWidget />, <ButtonsWidget />
 ]
 
 // https://stackoverflow.com/questions/33199959/how-to-detect-a-react-component-vs-a-react-element
