@@ -156,7 +156,7 @@ const TagWidget = props => {
     const prev = colorTag.value.trim();
     const updated = color;
 
-    console.log("UPD", marker, updated, prev, colorTag);
+    console.log("UPD", updated, prev, colorTag);
 
     if (prev.length === 0 && updated.length > 0) {
       props.onAppendBody({ ...colorTag, value: updated });
