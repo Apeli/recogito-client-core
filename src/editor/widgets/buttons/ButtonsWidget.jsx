@@ -158,9 +158,9 @@ const TagWidget = props => {
             props.onUpdateBody(draftTag, bodies);
         }
 
-        setTimeout(() => {
-            addMarkerColor(marker.color)
-        }, 1)
+        // setTimeout(() => {
+        //     addMarkerColor(marker.color)
+        // }, 1)
 
     }
 
@@ -181,7 +181,7 @@ const TagWidget = props => {
 
     const buttonClick = marker => {
         console.log("MARKER", marker);
-        // selectMarker(marker);
+        selectMarker(marker);
         selectedMarker = marker;
     }
 
