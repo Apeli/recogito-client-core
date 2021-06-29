@@ -146,6 +146,10 @@ const TagWidget = props => {
       props.onUpdateBody(draftTag, { ...draftTag, value: updated });
     }
 
+    setTimeout(() => {
+      addMarkerColor(marker.color)
+    },1)
+
   }
 
   const addMarkerColor = (color) => {
