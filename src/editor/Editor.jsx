@@ -83,12 +83,12 @@ const Editor = props => {
 
     const onAppendBody = body => {
 
-        console.log("onAppendBody");
-        console.log(body, Array.isArray(body));
-        console.log(currentAnnotation);
-        console.log(creationMeta(body));
-        console.log("....");
-        console.log([...currentAnnotation.bodies, { ...body, ...creationMeta(body) }]);
+        // console.log("onAppendBody");
+        // console.log(body, Array.isArray(body));
+        // console.log(currentAnnotation);
+        // console.log(creationMeta(body));
+        // console.log("....");
+        // console.log([...currentAnnotation.bodies, { ...body, ...creationMeta(body) }]);
 
         let bodyObj = [...currentAnnotation.bodies, { ...body, ...creationMeta(body) }];
         if (Array.isArray(body)) {
@@ -105,7 +105,7 @@ const Editor = props => {
     }
 
     const onUpdateBody = (previous, updated) => {
-        console.log("onUpdateBody", currentAnnotation, updated, creationMeta(updated));
+        // console.log("onUpdateBody", currentAnnotation, updated, creationMeta(updated));
         return setCurrentAnnotation(
             currentAnnotation.clone({
                 body: currentAnnotation.bodies.map(body =>

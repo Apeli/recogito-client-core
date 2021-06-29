@@ -18,12 +18,13 @@ window.ReactDOM = ReactDOM;
 const BUILTIN_WIDGETS = {
   COMMENT: CommentWidget,
   BUTTONS: ButtonsWidget,
-  STYLES: StylesWidget
+  STYLES: StylesWidget,
+  TAGS: TagWidget,
 };
 
 /** Defaults to use if there's no overrides from the host app **/
 export const DEFAULT_WIDGETS = [
-  <CommentWidget />, <ButtonsWidget />, <StylesWidget />
+  <CommentWidget />, <ButtonsWidget />, <StylesWidget />, <TagWidget />
 ]
 
 // https://stackoverflow.com/questions/33199959/how-to-detect-a-react-component-vs-a-react-element
