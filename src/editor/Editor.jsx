@@ -7,8 +7,8 @@ import i18n from '../i18n';
 
 /** We need to compare bounds by value, not by object ref **/
 const bounds = elem => {
-  const { top, left, width, height } = elem.getBoundingClientRect();
-  return `${top}, ${left}, ${width}, ${height}`;
+    const { top, left, width, height } = elem.getBoundingClientRect();
+    return `${top}, ${left}, ${width}, ${height}`;
 }
 
 /**
@@ -20,170 +20,176 @@ const bounds = elem => {
  */
 const Editor = props => {
 
-  // The current state of the edited annotation vs. original
-  const [ currentAnnotation, setCurrentAnnotation ] = useState();
+    // The current state of the edited annotation vs. original
+    const [currentAnnotation, setCurrentAnnotation] = useState();
 
-  const [ dragged, setDragged ] = useState(false);
+    const [dragged, setDragged] = useState(false);
 
-  // Reference to the DOM element, so we can set position
-  const element = useRef();
+    // Reference to the DOM element, so we can set position
+    const element = useRef();
 
-  // Set derived annotation state
-  useEffect(() => {
-    setCurrentAnnotation(props.annotation);
-  }, [ props.annotation ]);
+    // Set derived annotation state
+    useEffect(() => {
+        setCurrentAnnotation(props.annotation);
+    }, [props.annotation]);
 
-  // Change editor position if element has moved
-  useEffect(() => {
-    if (element.current) {
-      // Note that ResizeObserver fires once when observation starts
-      return initResizeObserver();
-    }
-  }, [ bounds(props.selectedElement) ]);
+    // Change editor position if element has moved
+    useEffect(() => {
+        if (element.current) {
+            // Note that ResizeObserver fires once when observation starts
+            return initResizeObserver();
+        }
+    }, [bounds(props.selectedElement)]);
 
-  useEffect(() => {
-    if (currentAnnotation)
-      setCurrentAnnotation(currentAnnotation.clone({ target: props.modifiedTarget }));
-  }, [ props.modifiedTarget ])
+    useEffect(() => {
+        if (currentAnnotation)
+            setCurrentAnnotation(currentAnnotation.clone({ target: props.modifiedTarget }));
+    }, [props.modifiedTarget])
 
-  const initResizeObserver = () => {
-    if (window?.ResizeObserver) {
-      const resizeObserver = new ResizeObserver(() => {
-        if (!dragged)
-          setPosition(props.wrapperEl, element.current, props.selectedElement);
-      });
+    const initResizeObserver = () => {
+        if (window ? .ResizeObserver) {
+            const resizeObserver = new ResizeObserver(() => {
+                if (!dragged)
+                    setPosition(props.wrapperEl, element.current, props.selectedElement);
+            });
 
-      resizeObserver.observe(props.wrapperEl);
-      return () => resizeObserver.disconnect();
-    } else {
-      // Fire setPosition *only* for devices that don't support ResizeObserver
-      if (!dragged)
-        setPosition(props.wrapperEl, element.current, props.selectedElement);
-    }  
-  }
-
-  // Creator and created/modified timestamp metadata
-  const creationMeta = body => {
-    const meta = {};
-
-    const { user } = props.env;
-
-    // Metadata is only added when a user is set, otherwise
-    // the Editor operates in 'anonymous mode'.
-    if (user) {
-      meta.creator = {};
-      if (user.id) meta.creator.id = user.id;
-      if (user.displayName) meta.creator.name = user.displayName;
-
-      meta[body.created ? 'modified' : 'created'] = props.env.getCurrentTimeAdjusted();
+            resizeObserver.observe(props.wrapperEl);
+            return () => resizeObserver.disconnect();
+        } else {
+            // Fire setPosition *only* for devices that don't support ResizeObserver
+            if (!dragged)
+                setPosition(props.wrapperEl, element.current, props.selectedElement);
+        }
     }
 
-    return meta;
-  }
+    // Creator and created/modified timestamp metadata
+    const creationMeta = body => {
+        const meta = {};
 
-  const onAppendBody = body => setCurrentAnnotation(
-    currentAnnotation.clone({ 
-      body: [ ...currentAnnotation.bodies, { ...body, ...creationMeta(body) } ] 
-    })
-  );
+        const { user } = props.env;
 
-  const onUpdateBody = (previous, updated) => setCurrentAnnotation(
-    currentAnnotation.clone({
-      body: currentAnnotation.bodies.map(body => 
-        body === previous ? { ...updated, ...creationMeta(updated) } : body)
-    })
-  );
+        // Metadata is only added when a user is set, otherwise
+        // the Editor operates in 'anonymous mode'.
+        if (user) {
+            meta.creator = {};
+            if (user.id) meta.creator.id = user.id;
+            if (user.displayName) meta.creator.name = user.displayName;
 
-  const onRemoveBody = body => setCurrentAnnotation(
-    currentAnnotation.clone({
-      body: currentAnnotation.bodies.filter(b => b !== body)
-    })
-  );
+            meta[body.created ? 'modified' : 'created'] = props.env.getCurrentTimeAdjusted();
+        }
 
-  /** A convenience shorthand **/
-  const onUpsertBody = (arg1, arg2) => {
-    if (arg1 == null && arg2 != null) {
-      // Append arg 2 as a new body
-      onAppendBody(arg2);
-    } else if (arg1 != null && arg2 != null) {
-      // Replace body arg1 with body arg2
-      onUpdateBody(arg1, arg2);
-    } else if (arg1 != null && arg2 == null) {
-      // Find the first body with the same purpose as arg1,
-      // and upsert
-      const existing = currentAnnotation.bodies.find(b => b.purpose === arg1.purpose);
-      if (existing)
-        onUpdateBody(existing, arg1);
-      else
-        onAppendBody(arg1);
+        return meta;
     }
-  }
 
-  const onSetProperty = (property, value) => {
-    // A list of properties the user is NOT allowed to set
-    const isForbidden = [ '@context', 'id', 'type', 'body', 'target' ].includes(property); 
+    const onAppendBody = body => {
 
-    if (isForbidden)
-      throw new Exception(`Cannot set ${property} - not allowed`);
+        console.log("APpend", body, currentAnnotation, creationMeta(body));
 
-    if (value) {
-      setCurrentAnnotation(currentAnnotation.clone({ [property]: value }));
-    } else {
-      const updated = currentAnnotation.clone();
-      delete updated[property];
-      setCurrentAnnotation(updated);
+        setCurrentAnnotation(
+            currentAnnotation.clone({
+                body: [...currentAnnotation.bodies, { ...body, ...creationMeta(body) }]
+            })
+        );
     }
-  };
 
-  const onCancel = () => 
-    props.onCancel(props.annotation);
+    const onUpdateBody = (previous, updated) => setCurrentAnnotation(
+        currentAnnotation.clone({
+            body: currentAnnotation.bodies.map(body =>
+                body === previous ? { ...updated, ...creationMeta(updated) } : body)
+        })
+    );
 
-  const onOk = _ => {
-    // Removes the state payload from all bodies
-    const undraft = annotation => 
-      annotation.clone({
-        body : annotation.bodies.map(({ draft, ...rest }) => rest)
-      });
+    const onRemoveBody = body => setCurrentAnnotation(
+        currentAnnotation.clone({
+            body: currentAnnotation.bodies.filter(b => b !== body)
+        })
+    );
 
-    // Current annotation is either a selection (if it was created from 
-    // scratch just now) or an annotation (if it existed already and was
-    // opened for editing)
-    if (currentAnnotation.bodies.length === 0 && !props.allowEmpty) {
-      if (currentAnnotation.isSelection)
-        onCancel();
-      else 
+    /** A convenience shorthand **/
+    const onUpsertBody = (arg1, arg2) => {
+        if (arg1 == null && arg2 != null) {
+            // Append arg 2 as a new body
+            onAppendBody(arg2);
+        } else if (arg1 != null && arg2 != null) {
+            // Replace body arg1 with body arg2
+            onUpdateBody(arg1, arg2);
+        } else if (arg1 != null && arg2 == null) {
+            // Find the first body with the same purpose as arg1,
+            // and upsert
+            const existing = currentAnnotation.bodies.find(b => b.purpose === arg1.purpose);
+            if (existing)
+                onUpdateBody(existing, arg1);
+            else
+                onAppendBody(arg1);
+        }
+    }
+
+    const onSetProperty = (property, value) => {
+        // A list of properties the user is NOT allowed to set
+        const isForbidden = ['@context', 'id', 'type', 'body', 'target'].includes(property);
+
+        if (isForbidden)
+            throw new Exception(`Cannot set ${property} - not allowed`);
+
+        if (value) {
+            setCurrentAnnotation(currentAnnotation.clone({
+                [property]: value }));
+        } else {
+            const updated = currentAnnotation.clone();
+            delete updated[property];
+            setCurrentAnnotation(updated);
+        }
+    };
+
+    const onCancel = () =>
+        props.onCancel(props.annotation);
+
+    const onOk = _ => {
+        // Removes the state payload from all bodies
+        const undraft = annotation =>
+            annotation.clone({
+                body: annotation.bodies.map(({ draft, ...rest }) => rest)
+            });
+
+        // Current annotation is either a selection (if it was created from 
+        // scratch just now) or an annotation (if it existed already and was
+        // opened for editing)
+        if (currentAnnotation.bodies.length === 0 && !props.allowEmpty) {
+            if (currentAnnotation.isSelection)
+                onCancel();
+            else
+                props.onAnnotationDeleted(props.annotation);
+        } else {
+            if (currentAnnotation.isSelection)
+                props.onAnnotationCreated(undraft(currentAnnotation).toAnnotation());
+            else
+                props.onAnnotationUpdated(undraft(currentAnnotation), props.annotation);
+        }
+    };
+
+    const onDelete = () =>
         props.onAnnotationDeleted(props.annotation);
-    } else {
-      if (currentAnnotation.isSelection)
-        props.onAnnotationCreated(undraft(currentAnnotation).toAnnotation());
-      else
-        props.onAnnotationUpdated(undraft(currentAnnotation), props.annotation);
-    }
-  };
 
-  const onDelete = () => 
-    props.onAnnotationDeleted(props.annotation);
+    // Use default comment + tag widget unless host app overrides
+    const widgets = props.widgets ?
+        props.widgets.map(getWidget) : DEFAULT_WIDGETS;
 
-  // Use default comment + tag widget unless host app overrides
-  const widgets = props.widgets ? 
-    props.widgets.map(getWidget) : DEFAULT_WIDGETS;
+    const isReadOnlyWidget = w => w.type.disableDelete ?
+        w.type.disableDelete(currentAnnotation, {
+            ...w.props,
+            readOnly: props.readOnly,
+            env: props.env
+        }) : false;
 
-  const isReadOnlyWidget = w => w.type.disableDelete ?
-    w.type.disableDelete(currentAnnotation, {
-      ...w.props,
-      readOnly:props.readOnly,
-      env: props.env
-    }) : false;
+    const hasDelete = currentAnnotation &&
+        // annotation has bodies or allowEmpty,
+        (currentAnnotation.bodies.length > 0 || props.allowEmpty) && // AND
+        !props.readOnly && // we are not in read-only mode AND
+        !currentAnnotation.isSelection && // this is not a selection AND
+        !widgets.some(isReadOnlyWidget); // every widget is deletable
 
-  const hasDelete = currentAnnotation && 
-    // annotation has bodies or allowEmpty,
-    (currentAnnotation.bodies.length > 0 || props.allowEmpty) && // AND
-    !props.readOnly && // we are not in read-only mode AND
-    !currentAnnotation.isSelection && // this is not a selection AND
-    !widgets.some(isReadOnlyWidget);  // every widget is deletable
-
-  return (
-    <Draggable 
+    return (
+        <Draggable 
       disabled={!props.detachable}
       cancel=".r6o-btn, .r6o-nodrag" 
       onDrag={() => setDragged(true)}>
@@ -236,7 +242,7 @@ const Editor = props => {
       </div>
 
     </Draggable>
-  )
+    )
 
 }
 
