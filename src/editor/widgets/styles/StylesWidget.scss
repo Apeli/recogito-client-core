@@ -1,0 +1,51 @@
+// .r6o-button {
+//     .button-list {
+//         button {
+//             display: grid;
+//             grid-template-columns: auto 20px;
+//         }
+//     }
+// }
+
+.r6o-button button {
+    background-color: #d5fdf4;
+    outline: none;
+    border: none;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    padding: .4rem .5rem;
+    font-family: skolar-sans-latin, sans-serif;
+    display: grid;
+    grid-template-columns: auto 20px;
+    align-items: center;
+    border-bottom: 1px solid #FFF;
+    &.selected {
+        background-color: #a7d6cb;
+    }
+}
+
+.r6o-button button span {
+    pointer-events: none;
+}
+
+.r6o-button button span:first-child {
+    justify-self: left;
+    background-image: url("data:image/svg+xml,%0A%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='9px' height='11px' viewBox='0 0 9 11' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 57.1 (83088) - https://sketch.com --%3E%3Ctitle%3EIcons / Flag / Flag white Copy 29%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cdefs%3E%3Cpath d='M0,10.0833333 L0,9.16666667 L0.458,9.166 L0.458333333,0 L1.375,0 L1.375,0.458333333 L7.84884126,0.458333333 L6.47441175,3.20829234 L7.84943224,5.95833333 L1.375,5.95833333 L1.374,9.166 L1.83333333,9.16666667 L1.83333333,10.0833333 L0.458333333,10.0833333 L0,10.0833333 Z M6.36590874,1.375 L1.375,1.375 L1.375,5.04166667 L6.36623442,5.04166667 L5.44958825,3.20837433 L6.36590874,1.375 Z' id='path-1'%3E%3C/path%3E%3C/defs%3E%3Cg id='XX-OPETTAJA--Yksittäisen-tehtävän-tarkistus' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='Artboard' transform='translate(-315.000000, -496.000000)'%3E%3Cg id='Icons-/-Flag-/-Flag-green' transform='translate(314.000000, 496.000000)'%3E%3Cg id='flag' transform='translate(1.833333, 0.458333)'%3E%3Cmask id='mask-2' fill='white'%3E%3Cuse xlink:href='%23path-1'%3E%3C/use%3E%3C/mask%3E%3Cuse id='Shape' fill='%23116B58' fill-rule='nonzero' xlink:href='%23path-1'%3E%3C/use%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-size: 14px auto;
+    background-position: left center;
+    display: inline-block;
+    padding-left: 20px;
+    background-repeat: no-repeat;
+}
+
+.r6o-button button span:last-child {
+    justify-self: right;
+    margin: 0;
+}
+
+.r6o-button span.marker-circle {
+    width: 14px;
+    border-radius: 50%;
+    height: 14px;
+}

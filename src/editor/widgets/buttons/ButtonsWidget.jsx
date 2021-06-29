@@ -14,15 +14,7 @@ const getDraftTag = existingDraft =>
         draft: true
     };
 
-const getDraftColorTag = existingDraft =>
-    existingDraft ? existingDraft : {
-        type: 'TextualBody',
-        value: '',
-        purpose: 'highlighting',
-        draft: true
-    };
-
-/** The basic freetext tag control from original Recogito **/
+/** The Alfons widget **/
 const TagWidget = props => {
 
     const markerStyles = [{
@@ -130,7 +122,6 @@ const TagWidget = props => {
 
     // Last draft tag goes into the input field
     const draftTag = getDraftTag(all.slice().reverse().find(b => b.draft));
-    const colorTag = getDraftColorTag(all.slice().reverse().find(b => b.draft));
 
     // All except draft tag
     const tags = all.filter(b => b != draftTag);
@@ -168,7 +159,6 @@ const TagWidget = props => {
             let btn = [...btns].pop();
             btn.click();
         }, 1000)
-
 
     }
 
