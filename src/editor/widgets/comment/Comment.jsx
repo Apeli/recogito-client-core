@@ -50,7 +50,6 @@ const Comment = props => {
   ) : (
     <div className={ isEditable ? "r6o-widget comment editable" : "r6o-widget comment"}>
       <TextEntryField 
-        editable={isEditable}
         content={props.body.value} 
         onChange={onUpdateComment} 
         onSaveAndClose={props.onSaveAndClose}
