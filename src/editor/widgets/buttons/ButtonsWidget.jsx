@@ -156,6 +156,12 @@ const TagWidget = props => {
             props.onUpdateBody(draftTag, bodies);
         }
 
+        if (marker.title.toLowerCase() === "kommentti") {
+          let ta = document.querySelectorAll(".r6o-editable-text").pop();
+          ta.focus();
+          return;
+        }
+
         console.log("PROPS", props);
         setTimeout(() => {
             let btns = document.querySelectorAll(".r6o-btn");
