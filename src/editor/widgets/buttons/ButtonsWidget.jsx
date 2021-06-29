@@ -138,12 +138,18 @@ const TagWidget = props => {
 
     console.log("UPD", marker, updated, prev, draftTag);
 
+    const bodies = [
+        {type: 'TextualBody', value: marker.title, purpose: 'commenting'},
+        {type: 'TextualBody', value: marker.color, purpose: 'highlighting'},
+      ],
+
     if (prev.length === 0 && updated.length > 0) {
-      props.onAppendBody({ ...draftTag, value: updated });
+      // props.onAppendBody([{ ...draftTag, value: updated }]);
+      props.onAppendBody(bodies);
     } else if (prev.length > 0 && updated.length === 0) {
       props.onRemoveBody(draftTag);
     } else {
-      props.onUpdateBody(draftTag, { ...draftTag, value: updated });
+      props.onUpdateBody(draftTag, bodies);
     }
 
     setTimeout(() => {
