@@ -12,6 +12,104 @@ const getDraftTag = existingDraft =>
 /** The basic freetext tag control from original Recogito **/
 const TagWidget = props => {
 
+  const markerStyles = [{
+            title: "Kommentti",
+            isComment: true,
+            color: "rgba(230, 57, 57, 0.62)",
+            main: true,
+        },
+        {
+            title: "pilkku",
+            color: "rgba(230, 120, 57, 0.62)",
+            main: true,
+        },
+        {
+            title: "alkukirjain",
+            color: "rgba(60, 0, 110, 0.47)",
+            main: true,
+        },
+        {
+            title: "yhdyssana",
+            color: "rgba(204, 255, 20, 0.47)",
+            main: true,
+        },
+
+        {
+            title: "pronominien käyttö",
+            color: "rgba(0, 161, 176, 0.47)",
+            main: true,
+        },
+
+        {
+            title: "omistusliite",
+            color: "rgba(255, 140, 0, 0.47)",
+            main: true,
+        },
+        {
+            title: "oikeinkirjoitus",
+            color: "rgba(27, 200, 22, 0.47)",
+            main: true,
+        },
+        {
+            title: "lause-/virkerakenne",
+            color: "rgba(27, 200, 22, 0.47)",
+            main: true,
+        },
+        {
+            title: "verbimuoto",
+            color: "rgba(173, 121, 121, 0.47)",
+            main: true,
+        },
+        {
+            title: "sijamuotojen käyttö",
+            color: "rgba(173, 148, 121, 0.47)",
+            main: true,
+        },
+        {
+            title: "sanan tai ilmauksen valinta",
+            color: "rgba(220, 227, 23, 0.47)",
+            main: true,
+        },
+        {
+            title: "viittaustekniikka",
+            color: "rgba(112, 45, 86, 0.47)",
+            main: true,
+        },
+    ];
+    const colors = [
+        "rgba(50, 168, 82, 0.47)",
+        "rgba(126, 209, 31, 0.47)",
+        "rgba(204, 255, 20, 0.47)",
+        "rgba(220, 227, 23, 0.47)",
+        "rgba(121, 173, 172, 0.47)",
+        "rgba(160, 166, 5, 0.47)",
+        "rgba(255, 200, 0, 0.47)",
+        "rgba(255, 140, 0, 0.47)",
+        "rgba(255, 72, 0, 0.47)",
+        "rgba(212, 0, 0, 0.47)",
+        "rgba(0, 234, 255, 0.47)",
+        "rgba(0, 161, 176, 0.47)",
+        "rgba(0, 174, 255, 0.47)",
+        "rgba(0, 72, 255, 0.47)",
+        "rgba(140, 0, 255, 0.47)",
+        "rgba(198, 131, 252, 0.47)",
+        "rgba(154, 120, 255, 0.47)",
+        "rgba(191, 0, 255, 0.47)",
+        "rgba(255, 0, 238, 0.47)",
+        "rgba(255, 133, 247, 0.47)",
+        "rgba(255, 133, 180, 0.47)",
+        "rgba(121, 173, 135, 0.47)",
+        "rgba(170, 173, 121, 0.47)",
+        "rgba(173, 148, 121, 0.47)",
+        "rgba(173, 121, 121, 0.47)",
+        "rgba(121, 144, 173, 0.47)",
+        "rgba(138, 121, 173, 0.47)",
+        "rgba(173, 121, 151, 0.47)",
+        "rgba(45, 112, 110, 0.47)",
+        "rgba(112, 45, 86, 0.47)",
+    ];
+
+
   // All tags (draft + non-draft)
   const all = props.annotation ? 
     props.annotation.bodies.filter(b => b.type === 'TextualBody' && b.purpose === 'commenting') : [];
@@ -59,8 +157,24 @@ const TagWidget = props => {
   }
 
   return (
-    <div className="r6o-widget r6o-tag r6o-nodrag">moimoi
-      { tags.length > 0 &&
+    <div className="r6o-widget r6o-button r6o-nodrag">
+
+      { markerStyles.length > 0 && 
+
+        {
+          markerStyles.map(marker => 
+
+            <button type="button">
+              <span>{marker.title}</span>
+              <span class="marker-circle" style={'background-color:' + marker.color}></span>
+            </button>
+
+          )}
+
+
+      }
+
+      {/*{ tags.length > 0 &&
         <ul className="r6o-taglist">
           { tags.map(tag =>
             <li key={tag.value} onClick={toggle(tag.value)}>
@@ -78,7 +192,7 @@ const TagWidget = props => {
             </li>
           )}
         </ul>
-      }
+      }*/}
 
       {!props.readOnly &&
         <Autocomplete
