@@ -76,7 +76,7 @@ const TagWidget = props => {
             main: true,
         },
     ];
-    
+
     const colors = [
         "rgba(50, 168, 82, 0.47)",
         "rgba(126, 209, 31, 0.47)",
@@ -183,7 +183,7 @@ const TagWidget = props => {
         <div class="button-list">
         { markerStyles.map(marker => 
 
-            <button type="button" onClick={onDraftChange(marker.title)}>
+            <button type="button" xxxonClick="onDraftChange(marker.title)">
               <span>{marker.title}</span>
               <span class="marker-circle" style={'background-color:' + marker.color}></span>
             </button>
