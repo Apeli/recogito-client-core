@@ -85,7 +85,7 @@ const Editor = props => {
 
         console.log("APpend", body, currentAnnotation, creationMeta(body));
 
-        setCurrentAnnotation(
+        return setCurrentAnnotation(
             currentAnnotation.clone({
                 body: [...currentAnnotation.bodies, { ...body, ...creationMeta(body) }]
             })
