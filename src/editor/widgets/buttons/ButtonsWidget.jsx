@@ -160,7 +160,7 @@ const TagWidget = props => {
     <div className="r6o-widget r6o-button r6o-nodrag">
 
       { markerStyles.length > 0 && 
-
+        <div class="button-list">
         { markerStyles.map(marker => 
 
             <button type="button">
@@ -169,7 +169,7 @@ const TagWidget = props => {
             </button>
 
         )}
-
+        </div>
       }
 
       {/*{ tags.length > 0 &&
