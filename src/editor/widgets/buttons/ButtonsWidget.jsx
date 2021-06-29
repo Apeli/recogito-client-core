@@ -125,12 +125,12 @@ const TagWidget = props => {
 
   console.log("TAGS", all, tags, draftTag);
 
-  const selectMarker = marker => {
+  const selectMarker = (marker) => {
 
     const prev = draftTag.value.trim();
     const updated = marker.title;
 
-    console.log("UPD", updated, prev, draftTag);
+    console.log("UPD", marker, updated, prev, draftTag);
 
     if (prev.length === 0 && updated.length > 0) {
       props.onAppendBody({ ...draftTag, value: updated });
