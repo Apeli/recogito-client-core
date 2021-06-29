@@ -76,6 +76,7 @@ const TagWidget = props => {
             main: true,
         },
     ];
+    
     const colors = [
         "rgba(50, 168, 82, 0.47)",
         "rgba(126, 209, 31, 0.47)",
@@ -178,7 +179,7 @@ const TagWidget = props => {
   return (
     <div className="r6o-widget r6o-button r6o-nodrag">
 
-      {/*{ markerStyles.length > 0 && 
+      { markerStyles.length > 0 && 
         <div class="button-list">
         { markerStyles.map(marker => 
 
@@ -189,7 +190,7 @@ const TagWidget = props => {
 
         )}
         </div>
-      }*/}
+      }
 
       { tags.length > 0 &&
         <ul className="r6o-taglist">
