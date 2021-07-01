@@ -129,12 +129,10 @@ export default class Editor extends Component {
         console.log("BPBP", body, previous);
         let previousCheck = null;
         if (Array.isArray(previous)) {
-            previousCheck = previous.filter(p => p === body);
-            if (previousCheck.length) {
-                previous = previousCheck[0];
-            }
+            previousCheck = previous.filter(p => p === body).length > 0;
         }
-        return body === previous ? { ...updated, ...this.creationMeta(updated) } : body
+        log("previousCheck", previousCheck);
+        return ((body === previous) || previousCheck) ? { ...updated, ...this.creationMeta(updated) } : body
       })
         
     }, saveImmediately);
