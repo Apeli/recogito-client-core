@@ -123,24 +123,15 @@ export default class Editor extends Component {
    * @param saveImmediately set to true to save & close immediately
    */
   onUpdateBody = (previous, updated, saveImmediately) => { 
-    console.log("onUpdateBody", this, previous, updated, saveImmediately);
     this.updateCurrentAnnotation({
       body: this.state.currentAnnotation.bodies.map(body => {
-        console.log("BPBP", body, previous, updated);
         let previousIndex, updateObj;
-
         if (Array.isArray(previous)) {
             previousIndex = previous.findIndex(p => p === body);
             if (previousIndex >= 0) {
                 updateObj = updated[previousIndex];
+                return { ...updateObj, ...this.creationMeta(updateObj) }
             }
-        }
-
-        console.log("PREVCHECK", previousIndex);
-
-        if (updateObj) {
-            console.log("TÄMÄ", { ...updateObj, ...this.creationMeta(updateObj) });
-            return { ...updateObj, ...this.creationMeta(updateObj) }
         }
 
         return ((body === previous) || previousCheck) ? { ...updated, ...this.creationMeta(updated) } : body

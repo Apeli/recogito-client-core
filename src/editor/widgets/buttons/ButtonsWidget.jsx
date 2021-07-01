@@ -133,8 +133,6 @@ const TagWidget = props => {
         const prev = draftTag.value.trim();
         const updated = marker.title;
 
-        console.log("SE", props.annotation);
-
         const doUpdate = props.annotation.underlying.body.length > 0;
         let tagToUpdate = null;
         if (doUpdate) {
@@ -146,27 +144,22 @@ const TagWidget = props => {
             { type: 'TextualBody', value: marker.color, purpose: 'highlighting' },
         ];
 
-        if (!doUpdate && updated.length > 0) {
-            // props.onAppendBody([{ ...draftTag, value: updated }]);
-            console.log("HEPHEP000");
-            props.onAppendBody(bodies, true);
-        } else {
-            console.log("HEPPPPPP", draftTag, props)
-            props.onUpdateBody(tagToUpdate, bodies, true);
-        }
-
+        let saveOnSelect = true;
         if (marker.title.toLowerCase() === "kommentti") {
-          let ta = document.querySelectorAll(".r6o-editable-text")[0];
-          ta.focus();
-          return;
+            let ta = document.querySelectorAll(".r6o-editable-text")[0];
+            ta.focus();
+            saveOnSelect = false;
         }
 
-        console.log("PROPS", props);
-        // setTimeout(() => {
-        //     let btns = document.querySelectorAll(".r6o-btn");
-        //     let btn = [...btns].pop();
-        //     btn.click();
-        // }, 1000)
+        // if (saveOnSelect) {
+
+        if (!doUpdate && updated.length > 0) {
+            props.onAppendBody(bodies, saveOnSelect);
+        } else {
+            props.onUpdateBody(tagToUpdate, bodies, saveOnSelect);
+        }
+
+        // }
 
     }
 
