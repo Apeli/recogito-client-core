@@ -133,7 +133,7 @@ export default class Editor extends Component {
         }
 
         if (previousCheck.length) {
-            return { ...previousCheck, ...this.creationMeta(previousCheck) }
+            return { ...previousCheck[0], ...this.creationMeta(previousCheck[0]) }
         }
 
         return ((body === previous) || previousCheck) ? { ...updated, ...this.creationMeta(updated) } : body
