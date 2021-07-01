@@ -133,7 +133,7 @@ const TagWidget = props => {
         const prev = draftTag.value.trim();
         const updated = marker.title;
 
-        console.log("SE", selectMarker);
+        console.log("SE", props.annotation);
 
         const bodies = [
             { type: 'TextualBody', value: marker.title, purpose: 'commenting' },

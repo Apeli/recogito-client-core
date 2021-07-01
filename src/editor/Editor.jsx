@@ -112,7 +112,7 @@ export default class Editor extends Component {
       ({ ...b, ...this.creationMeta(b) }));
 
     this.updateCurrentAnnotation({ 
-      body: [...toAppend ] 
+      body: [ ...this.state.currentAnnotation.bodies, ...toAppend ] 
     }, saveImmediately);
   }
 
