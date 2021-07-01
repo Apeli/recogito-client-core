@@ -208,12 +208,12 @@ const TagWidget = props => {
 
     const setMarkerTitle = (e) => {
         console.log("setMarkerTitle",e);
+        markerTitle = e.target.value;
     }
 
     const [showAddForm, setShowAddForm] = React.useState(false)
-    const [markerTitle] = React.useState("")
 
-    // let markerTitle = "";
+    let markerTitle = "";
     let selectedColor;
 
     return (
