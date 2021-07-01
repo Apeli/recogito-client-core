@@ -151,15 +151,11 @@ const TagWidget = props => {
             saveOnSelect = false;
         }
 
-        // if (saveOnSelect) {
-
         if (!doUpdate && updated.length > 0) {
             props.onAppendBody(bodies, saveOnSelect);
         } else {
             props.onUpdateBody(tagToUpdate, bodies, saveOnSelect);
         }
-
-        // }
 
     }
 
@@ -186,26 +182,19 @@ const TagWidget = props => {
         const updated = value.trim();
 
         if (prev.length === 0 && updated.length > 0) {
-            console.log("HEPHEP1");
             props.onAppendBody({ ...draftTag, value: updated });
         } else if (prev.length > 0 && updated.length === 0) {
             props.onRemoveBody(draftTag);
         } else {
-            console.log("HEPHEP");
             props.onUpdateBody(draftTag, { ...draftTag, value: updated });
         }
     }
 
     const onSubmit = tag => {
         const { draft, ...toSubmit } = { ...draftTag, value: tag };
-
-        console.log("onSubmit", toSubmit, selectedMarker);
-
         if (draftTag.value.trim().length === 0) {
-            console.log("HEPHEP231");
             props.onAppendBody(toSubmit);
         } else {
-            console.log("HEPHEP4235");
             props.onUpdateBody(draftTag, toSubmit);
         }
     }
@@ -228,25 +217,20 @@ const TagWidget = props => {
         </div>
       }
 
-      {/*{ tags.length > 0 &&
-        <ul className="r6o-taglist">
-          { tags.map(tag =>
-            <li key={tag.value} onClick={toggle(tag.value)}>
-              <span className="r6o-label">{tag.value}</span>
+      { colors.length > 0 && 
+        <div class="button-list">
+        { colors.map(color => 
 
-              {!props.readOnly &&
-                <CSSTransition in={showDelete === tag.value} timeout={200} classNames="r6o-delete">
-                  <span className="r6o-delete-wrapper" onClick={onDelete(tag)}>
-                    <span className="r6o-delete">
-                      <CloseIcon width={12} />
-                    </span>
-                  </span>
-                </CSSTransition>
-              }
-            </li>
-          )}
-        </ul>
-      }*/}
+            <div class="r6o-button-color-box" style={'background-color:' + color}>
+                Valitse
+            </div>
+
+        )}
+        </div>
+      }
+
+
+
     </div>
     )
 
