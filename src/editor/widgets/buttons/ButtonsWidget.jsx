@@ -133,6 +133,8 @@ const TagWidget = props => {
         const prev = draftTag.value.trim();
         const updated = marker.title;
 
+        console.log("SE", selectMarker);
+
         const bodies = [
             { type: 'TextualBody', value: marker.title, purpose: 'commenting' },
             { type: 'TextualBody', value: marker.color, purpose: 'highlighting' },
@@ -143,9 +145,10 @@ const TagWidget = props => {
             console.log("HEPHEP000");
             props.onAppendBody(bodies, true);
         } else if (prev.length > 0 && updated.length === 0) {
+            log("HEPPPPPP123123", draftTag)
             props.onRemoveBody(draftTag, true);
         } else {
-            log("HEP", draftTag)
+            log("HEPPPPPP", draftTag)
             props.onUpdateBody(draftTag, bodies, true);
         }
 
