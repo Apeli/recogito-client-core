@@ -233,7 +233,7 @@ const TagWidget = props => {
         const obj = {
             title: markerTitle,
             color: selectedColor,
-            style: newMarkerStyle,
+            style: markerStyle,
         };
 
         const newList = [...markerList, obj]
