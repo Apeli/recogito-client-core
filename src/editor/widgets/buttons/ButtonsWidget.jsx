@@ -199,7 +199,13 @@ const TagWidget = props => {
         }
     }
 
+    const selectColor = color => {
+        selectedColor = color;
+        alert(selectedColor);
+    }
+
     let selectedMarker = null;
+    let selectedColor;
 
     return (
         <div className="r6o-widget r6o-button r6o-nodrag">
@@ -221,7 +227,7 @@ const TagWidget = props => {
         <div class="button-list">
         { colors.map(color => 
 
-            <div class="r6o-button-color-box" style={'background-color:' + color}>
+            <div class="r6o-button-color-box" style={'background-color:' + color} onClick={() => {selectColor(color)}}>
                 Valitse
             </div>
 
