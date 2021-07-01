@@ -233,9 +233,9 @@ const TagWidget = props => {
             style: newMarkerStyle,
         };
 
-        markerList.push(obj);
-        // setMarkerList(markerStyles);
-        console.log("NEW", obj, markerList);
+        markerStyles.push(obj);
+        setMarkerList(markerStyles);
+        console.log("NEW", obj, markerStyles);
     }
 
     const [showAddForm, setShowAddForm] = React.useState(false)
