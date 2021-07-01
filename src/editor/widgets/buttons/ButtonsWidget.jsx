@@ -140,6 +140,7 @@ const TagWidget = props => {
 
         if (prev.length === 0 && updated.length > 0) {
             // props.onAppendBody([{ ...draftTag, value: updated }]);
+            console.log("HEPHEP000");
             props.onAppendBody(bodies, true);
         } else if (prev.length > 0 && updated.length === 0) {
             props.onRemoveBody(draftTag, true);
@@ -186,10 +187,12 @@ const TagWidget = props => {
         const updated = value.trim();
 
         if (prev.length === 0 && updated.length > 0) {
+            console.log("HEPHEP1");
             props.onAppendBody({ ...draftTag, value: updated });
         } else if (prev.length > 0 && updated.length === 0) {
             props.onRemoveBody(draftTag);
         } else {
+            console.log("HEPHEP");
             props.onUpdateBody(draftTag, { ...draftTag, value: updated });
         }
     }
@@ -200,8 +203,10 @@ const TagWidget = props => {
         console.log("onSubmit", toSubmit, selectedMarker);
 
         if (draftTag.value.trim().length === 0) {
+            console.log("HEPHEP231");
             props.onAppendBody(toSubmit);
         } else {
+            console.log("HEPHEP4235");
             props.onUpdateBody(draftTag, toSubmit);
         }
     }
