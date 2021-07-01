@@ -132,7 +132,10 @@ export default class Editor extends Component {
             previousCheck = previous.filter(p => p === body);
         }
 
+        console.log("PREVCHECK", previousCheck);
+
         if (previousCheck.length) {
+            console.log("TÄMÄ", { ...previousCheck[0], ...this.creationMeta(previousCheck[0]) });
             return { ...previousCheck[0], ...this.creationMeta(previousCheck[0]) }
         }
 
