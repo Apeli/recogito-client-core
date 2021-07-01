@@ -135,18 +135,17 @@ const TagWidget = props => {
 
         console.log("SE", props.annotation);
 
+        const doUpdate = props.annotation.underlying.bodies.length > 0;
+
         const bodies = [
             { type: 'TextualBody', value: marker.title, purpose: 'commenting' },
             { type: 'TextualBody', value: marker.color, purpose: 'highlighting' },
         ];
 
-        if (prev.length === 0 && updated.length > 0) {
+        if (!doUpdate && updated.length > 0) {
             // props.onAppendBody([{ ...draftTag, value: updated }]);
             console.log("HEPHEP000");
             props.onAppendBody(bodies, true);
-        } else if (prev.length > 0 && updated.length === 0) {
-            log("HEPPPPPP123123", draftTag)
-            props.onRemoveBody(draftTag, true);
         } else {
             log("HEPPPPPP", draftTag)
             props.onUpdateBody(draftTag, bodies, true);
