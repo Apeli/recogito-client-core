@@ -236,10 +236,10 @@ const TagWidget = props => {
             style: newMarkerStyle,
         };
 
-        markerStyles.push(obj);
-        setMarkerList([...markerList, obj]);
+        const newList = [...markerList, obj]
+        setMarkerList(newList);
         
-        localStorage.setItem("user-annotations", JSON.stringify(markerList));
+        localStorage.setItem("user-annotations", JSON.stringify(newList));
 
     }
 
