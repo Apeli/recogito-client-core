@@ -160,9 +160,7 @@ const TagWidget = props => {
     }
 
     const buttonClick = marker => {
-        console.log("MARKER", marker);
         selectMarker(marker);
-        selectedMarker = marker;
     }
 
     const toggle = tag => _ => {
@@ -201,21 +199,17 @@ const TagWidget = props => {
 
     const selectColor = color => {
         selectedColor = color;
-        alert(selectedColor);
+        alert(markerTitle);
     }
 
     const toggleAddForm = () => {
-        // props.showAddForm = !props.showAddForm;
-        setShowAddForm(true);
-        alert(showAddForm);
+        setShowAddForm(!showAddForm));
     }
 
-    let selectedMarker = null;
-    props.showAddForm = false;
-
     const [showAddForm, setShowAddForm] = React.useState(false)
+    const [markerTitle] = React.useState("")
 
-    let markerTitle = "";
+    // let markerTitle = "";
     let selectedColor;
 
     return (
