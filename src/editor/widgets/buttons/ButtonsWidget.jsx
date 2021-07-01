@@ -94,6 +94,9 @@ const TagWidget = props => {
         },
     ];
 
+    const userAnnotations = localStorage.getItem("user-annotations") ? localStorage.getItem("user-annotations") : [];
+    const allMarkers = [...userAnnotations, ...markerStyles];
+
     const colors = [
         "rgba(50, 168, 82, 0.47)",
         "rgba(126, 209, 31, 0.47)",
@@ -234,13 +237,14 @@ const TagWidget = props => {
         };
 
         markerStyles.push(obj);
-        // setMarkerList(markerStyles);
         setMarkerList([...markerList, obj]);
-        console.log("NEW", obj, markerStyles);
+        
+        localStorage.setItem("user-annotations", markerList);
+
     }
 
     const [showAddForm, setShowAddForm] = React.useState(false)
-    const [markerList, setMarkerList] = React.useState(markerStyles);
+    const [markerList, setMarkerList] = React.useState(allMarkers);
 
     let markerTitle = "";
     let newMarkerStyle = "highlight";
