@@ -205,11 +205,11 @@ const TagWidget = props => {
     }
 
     const toggleAddForm = () => {
-        showAddForm = !showAddForm;
+        props.showAddForm = !props.showAddForm;
     }
 
     let selectedMarker = null;
-    let showAddForm = false;
+    props.showAddForm = false;
     let markerTitle = "";
     let selectedColor;
 
@@ -233,7 +233,7 @@ const TagWidget = props => {
 
         <button onClick={() => toggleAddForm() }type="button">Lisää oma tyyli</button>
 
-        { showAddForm && 
+        { props.showAddForm && 
         <div class="r6o-marker-form">
 
             <input type="text" value={markerTitle} placeholder="Merkintä" />
