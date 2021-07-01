@@ -278,6 +278,10 @@ const TagWidget = props => {
                 !marker.main && 
                 <span class="r6o-button-list-remove" onClick={(e) => {removeMarker(e, marker)}}>&times;</span>
               }
+              {
+                marker.main &&
+                <span class="no-pointer"></span>
+              }
               <span class="no-pointer">{marker.title}</span>
               <span class="marker-circle no-pointer" style={'background-color:' + marker.color}></span>
             </button>
