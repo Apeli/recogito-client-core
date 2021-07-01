@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import CommentWidget from './comment/CommentWidget'
 import TagWidget from './tag/TagWidget';
 import ButtonsWidget from './buttons/ButtonsWidget';
-import StylesWidget from './styles/StylesWidget';
 import WrappedWidget from './WrappedWidget';
 
 /**
