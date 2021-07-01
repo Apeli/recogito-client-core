@@ -203,7 +203,7 @@ const TagWidget = props => {
     }
 
     const toggleAddForm = () => {
-        setShowAddForm(!showAddForm));
+        setShowAddForm(!showAddForm);
     }
 
     const [showAddForm, setShowAddForm] = React.useState(false)
