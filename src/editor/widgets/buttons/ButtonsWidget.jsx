@@ -22,63 +22,75 @@ const TagWidget = props => {
             isComment: true,
             color: "rgba(230, 57, 57, 0.62)",
             main: true,
+            style: "highlight",
         },
         {
             title: "pilkku",
             color: "rgba(230, 120, 57, 0.62)",
             main: true,
+            style: "highlight",
         },
         {
             title: "alkukirjain",
             color: "rgba(60, 0, 110, 0.47)",
             main: true,
+            style: "highlight",
         },
         {
             title: "yhdyssana",
             color: "rgba(204, 255, 20, 0.47)",
             main: true,
+            style: "highlight",
         },
 
         {
             title: "pronominien käyttö",
             color: "rgba(0, 161, 176, 0.47)",
             main: true,
+            style: "highlight",
         },
 
         {
             title: "omistusliite",
             color: "rgba(255, 140, 0, 0.47)",
             main: true,
+            style: "highlight",
         },
         {
             title: "oikeinkirjoitus",
             color: "rgba(27, 200, 22, 0.47)",
             main: true,
+            style: "highlight",
         },
         {
             title: "lause-/virkerakenne",
             color: "rgba(27, 200, 22, 0.47)",
             main: true,
+            style: "highlight",
         },
         {
             title: "verbimuoto",
             color: "rgba(173, 121, 121, 0.47)",
             main: true,
+            style: "highlight",
         },
         {
             title: "sijamuotojen käyttö",
             color: "rgba(173, 148, 121, 0.47)",
             main: true,
+            style: "highlight",
         },
         {
             title: "sanan tai ilmauksen valinta",
             color: "rgba(220, 227, 23, 0.47)",
             main: true,
+            style: "highlight",
         },
         {
             title: "viittaustekniikka",
             color: "rgba(112, 45, 86, 0.47)",
             main: true,
+            style: "highlight",
         },
     ];
 
@@ -142,6 +154,7 @@ const TagWidget = props => {
         const bodies = [
             { type: 'TextualBody', value: marker.title, purpose: 'commenting' },
             { type: 'TextualBody', value: marker.color, purpose: 'highlighting' },
+            { type: 'TextualBody', value: marker.style ? marker.style : "highlight", purpose: 'styling' },
         ];
 
         let saveOnSelect = true;
@@ -199,7 +212,6 @@ const TagWidget = props => {
 
     const selectColor = color => {
         selectedColor = color;
-        alert(markerTitle);
     }
 
     const toggleAddForm = () => {
@@ -207,13 +219,26 @@ const TagWidget = props => {
     }
 
     const setMarkerTitle = (e) => {
-        console.log("setMarkerTitle",e);
         markerTitle = e.target.value;
+    }
+
+    const setMarkerStyle = (style) => {
+        newMarkerStyle = style;
+    }
+
+    const saveMarkerStyle = () => {
+        const obj = {
+            title: markerTitle,
+            color: selectedColor,
+            style: newMarkerStyle,
+        };
+        console.log("NEW", obj);
     }
 
     const [showAddForm, setShowAddForm] = React.useState(false)
 
     let markerTitle = "";
+    let newMarkerStyle = "highlight";
     let selectedColor;
 
     return (
@@ -252,6 +277,14 @@ const TagWidget = props => {
             )}
             </div>
           }
+
+          <div class="r6o-widget-marker-styles">
+            <button type="button" onClick={() => {setMarkerStyle("highlight")}}>Korostus</button>
+            <button type="button" onClick={() => {setMarkerStyle("underline")}}>Alleviivaus</button>
+            <button type="button" onClick={() => {setMarkerStyle("strikethrough")}}>Yliviivaus</button>
+          </div>
+
+          <button type="button" onClick={() => {saveMarkerStyle()}}>Tallenna merkintä</button>
 
         </div>
         }
