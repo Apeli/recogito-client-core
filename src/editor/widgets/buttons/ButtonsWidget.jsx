@@ -235,7 +235,7 @@ const TagWidget = props => {
 
         <div class="r6o-marker-form">
 
-            <input type="text" value={markerTitle} placeholder="Merkintä">
+            <input type="text" value={markerTitle} placeholder="Merkintä" />
 
           { colors.length > 0 && 
             <div class="r6o-widget-color-list">
