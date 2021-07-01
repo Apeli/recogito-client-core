@@ -204,7 +204,7 @@ const TagWidget = props => {
         alert(selectedColor);
     }
 
-    const toggleAddForm = {
+    const toggleAddForm = () => {
         showAddForm = !showAddForm;
     }
 
