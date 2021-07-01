@@ -214,16 +214,16 @@ const TagWidget = props => {
     }
 
     const selectColor = color => {
-        selectedColor = color;
+        setSelectedColor(color);
     }
 
     const toggleAddForm = () => {
         setShowAddForm(!showAddForm);
     }
 
-    const setMarkerTitle = (e) => {
-        markerTitle = e.target.value;
-    }
+    // const setMarkerTitle = (e) => {
+    //     markerTitle = e.target.value;
+    // }
 
     const setMarkerStyle = (style) => {
         newMarkerStyle = style;
@@ -253,10 +253,11 @@ const TagWidget = props => {
 
     const [showAddForm, setShowAddForm] = React.useState(false)
     const [markerList, setMarkerList] = React.useState(allMarkers);
-
+    const [selectedColor, setSelectedColor] = React.useState(null);
+    const [markerTitle, setMarkerTitle] = React.useState("");
     let markerTitle = "";
     let newMarkerStyle = "highlight";
-    let selectedColor;
+    // let selectedColor;
 
     return (
         <div className="r6o-widget r6o-button r6o-nodrag">
@@ -281,13 +282,13 @@ const TagWidget = props => {
         { showAddForm && 
         <div class="r6o-marker-form">
 
-            <input type="text" onKeyUp={(e) => {setMarkerTitle(e)}} placeholder="Merkintä" />
+            <input type="text" onKeyUp={(e) => {setMarkerTitle(e.target.value)}} placeholder="Merkintä" />
 
           { colors.length > 0 && 
             <div class="r6o-widget-color-list">
             { colors.map(color => 
 
-                <div class="r6o-button-color-box" style={'background-color:' + color} onClick={() => {selectColor(color)}}>
+                <div class="r6o-button-color-box" className={selectedColor == color ? 'r6o-button-color-box selected' : 'r6o-button-color-box not-selected'} style={'background-color:' + color} onClick={() => {selectColor(color)}}>
                     Valitse
                 </div>
 
@@ -296,9 +297,9 @@ const TagWidget = props => {
           }
 
           <div class="r6o-widget-marker-styles">
-            <button type="button" onClick={() => {setMarkerStyle("highlight")}}>Korostus</button>
-            <button type="button" onClick={() => {setMarkerStyle("underline")}}>Alleviivaus</button>
-            <button type="button" onClick={() => {setMarkerStyle("strikethrough")}}>Yliviivaus</button>
+            <button type="button" className={newMarkerStyle == "highlight" ? 'selected' : 'not-selected'} onClick={() => {setMarkerStyle("highlight")}}>Korostus</button>
+            <button type="button" className={newMarkerStyle == "underline" ? 'selected' : 'not-selected'} onClick={() => {setMarkerStyle("underline")}}>Alleviivaus</button>
+            <button type="button" className={newMarkerStyle == "strikethrough" ? 'selected' : 'not-selected'} onClick={() => {setMarkerStyle("strikethrough")}}>Yliviivaus</button>
           </div>
 
           <button type="button" onClick={() => {saveMarkerStyle()}}>Tallenna merkintä</button>
