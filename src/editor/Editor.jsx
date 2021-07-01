@@ -127,8 +127,8 @@ export default class Editor extends Component {
     this.updateCurrentAnnotation({
       body: this.state.currentAnnotation.bodies.map(body => {
         console.log("BPBP", body, previous);
-        return body === previous ? { ...updated, ...this.creationMeta(updated) } : body)
-      }
+        return body === previous ? { ...updated, ...this.creationMeta(updated) } : body
+      })
         
     }, saveImmediately);
   }
