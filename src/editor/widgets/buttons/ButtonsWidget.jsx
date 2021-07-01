@@ -135,7 +135,7 @@ const TagWidget = props => {
 
         console.log("SE", props.annotation);
 
-        const doUpdate = props.annotation.underlying.bodies.length > 0;
+        const doUpdate = props.annotation.underlying.body.length > 0;
 
         const bodies = [
             { type: 'TextualBody', value: marker.title, purpose: 'commenting' },
