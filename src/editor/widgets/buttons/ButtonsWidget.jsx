@@ -94,7 +94,7 @@ const TagWidget = props => {
         },
     ];
 
-    const userAnnotations = localStorage.getItem("user-annotations") ? localStorage.getItem("user-annotations") : [];
+    const userAnnotations = localStorage.getItem("user-annotations") ? JSON.parse(localStorage.getItem("user-annotations")) : [];
     const allMarkers = [...userAnnotations, ...markerStyles];
 
     const colors = [
@@ -239,7 +239,7 @@ const TagWidget = props => {
         markerStyles.push(obj);
         setMarkerList([...markerList, obj]);
         
-        localStorage.setItem("user-annotations", markerList);
+        localStorage.setItem("user-annotations", JSON.stringify(markerList));
 
     }
 
