@@ -63,13 +63,14 @@
     margin-top: 10px;
 
     >div {
-        border:2px solid #FFF;
+        border: 2px solid #FFF;
         display: block;
         width: 100%;
         height: 20px;
         border-radius: 3px;
+
         &.selected {
-            border:2px solid #000;
+            border: 2px solid #000;
         }
     }
 }
@@ -86,14 +87,30 @@
     }
 }
 
-.r6o-add-new-marker > button {
+.r6o-add-new-marker>button {
     background: #FFF;
     text-align: left;
     padding-left: 28px;
+    display: block;
+    text-align: center;
+    padding-left: 0;
+    border: 1px solid #CCC;
+    margin: 5px;
+    width: calc(100% - 10px);
 }
 
 .r6o-marker-form input {
     display: block;
     width: calc(100% - 18px);
     margin-left: 5px;
+}
+
+.r6o-button .r6o-add-new-marker button {
+    text-align: center!important;
+    display: block;
+    background: #FFF;
+    border: 1px solid #CCC;
+    &.saveNewMarker {
+        width: calc(100% - 10px);
+    }
 }

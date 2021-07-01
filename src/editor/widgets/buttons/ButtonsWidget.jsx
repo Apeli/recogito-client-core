@@ -317,7 +317,7 @@ const TagWidget = props => {
             <button type="button" className={markerStyle == "strikethrough" ? 'selected' : 'not-selected'} onClick={() => {setMarkerStyle("strikethrough")}}>Yliviivaus</button>
           </div>
 
-          <button type="button" class="saveNew" onClick={() => {saveMarkerStyle()}}>Tallenna merkintä</button>
+          <button type="button" class="saveNewMarker" onClick={() => {saveMarkerStyle()}}>Tallenna merkintä</button>
 
         </div>
         }
