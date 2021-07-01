@@ -136,6 +136,10 @@ const TagWidget = props => {
         console.log("SE", props.annotation);
 
         const doUpdate = props.annotation.underlying.body.length > 0;
+        let tagToUpdate = null;
+        if (doUpdate) {
+            tagToUpdate = props.annotation.underlying.body;
+        }
 
         const bodies = [
             { type: 'TextualBody', value: marker.title, purpose: 'commenting' },
@@ -148,7 +152,7 @@ const TagWidget = props => {
             props.onAppendBody(bodies, true);
         } else {
             console.log("HEPPPPPP", draftTag, props)
-            props.onUpdateBody(draftTag, bodies, true);
+            props.onUpdateBody(tagToUpdate, bodies, true);
         }
 
         if (marker.title.toLowerCase() === "kommentti") {
