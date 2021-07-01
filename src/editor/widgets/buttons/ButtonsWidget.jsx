@@ -233,12 +233,13 @@ const TagWidget = props => {
             style: newMarkerStyle,
         };
 
-        markerList.push(obj);
+        markerStyles.push(obj);
+        setMarkerList(markerStyles);
         console.log("NEW", obj);
     }
 
     const [showAddForm, setShowAddForm] = React.useState(false)
-    const [markerList] = React.useState(markerStyles);
+    const [markerList, setMarkerList] = React.useState(markerStyles);
 
     let markerTitle = "";
     let newMarkerStyle = "highlight";
