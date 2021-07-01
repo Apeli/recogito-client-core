@@ -1,5 +1,3 @@
-
-
 .r6o-button button {
     background-color: #d5fdf4;
     outline: none;
@@ -13,6 +11,7 @@
     grid-template-columns: auto 20px;
     align-items: center;
     border-bottom: 1px solid #FFF;
+
     &.selected {
         background-color: #a7d6cb;
     }
@@ -44,19 +43,48 @@
 }
 
 .r6o-button-color-box {
-    position:relative;
+    position: relative;
     display: inline-block;
-    width:15px;
-    height:15px;
-    text-indent:-9999rem;
+    width: 15px;
+    height: 15px;
+    text-indent: -9999rem;
 }
 
 .r6o-widget-color-list {
-    display:grid;
-    grid-template-columns: repeat(12, 8.33333%);
-    > div {
-        display:block;
-        width:100%;
-        height:20px;
+    display: grid;
+    grid-template-columns: repeat(10, calc(10% - 5px));
+    grid-gap: 5px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+    >div {
+        display: block;
+        width: 100%;
+        height: 20px;
     }
+}
+
+.r6o-widget-marker-styles {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+    margin: 0 5px 10px;
+
+    button {
+        background: #FFF;
+        border: 1px solid #CCC;
+    }
+}
+
+.r6o-add-new-marker > button {
+    background: #FFF;
+    text-align: left;
+    padding-left: 28px;
+}
+
+.r6o-marker-form input {
+    display: block;
+    width: calc(100% - 18px);
+    margin-left: 5px;
 }

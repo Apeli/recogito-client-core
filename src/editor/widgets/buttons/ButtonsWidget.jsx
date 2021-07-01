@@ -95,7 +95,7 @@ const TagWidget = props => {
     ];
 
     const userAnnotations = localStorage.getItem("user-annotations") ? JSON.parse(localStorage.getItem("user-annotations")) : [];
-    const allMarkers = [...userAnnotations, ...markerStyles];
+    const allMarkers = [...markerStyles, ...userAnnotations];
 
     const colors = [
         "rgba(50, 168, 82, 0.47)",
