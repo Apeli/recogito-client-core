@@ -255,7 +255,7 @@ const TagWidget = props => {
     const [markerList, setMarkerList] = React.useState(allMarkers);
     const [selectedColor, setSelectedColor] = React.useState(null);
     const [markerTitle, setMarkerTitle] = React.useState("");
-    let markerTitle = "";
+    // let markerTitle = "";
     let newMarkerStyle = "highlight";
     // let selectedColor;
 
