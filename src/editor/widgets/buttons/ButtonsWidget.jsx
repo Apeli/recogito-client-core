@@ -234,7 +234,8 @@ const TagWidget = props => {
         };
 
         markerStyles.push(obj);
-        setMarkerList(markerStyles);
+        // setMarkerList(markerStyles);
+        setMarkerList([...markerList, obj]);
         console.log("NEW", obj, markerStyles);
     }
 
