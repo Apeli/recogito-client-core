@@ -225,9 +225,9 @@ const TagWidget = props => {
     //     markerTitle = e.target.value;
     // }
 
-    const setMarkerStyle = (style) => {
-        newMarkerStyle = style;
-    }
+    // const setMarkerStyle = (style) => {
+    //     newMarkerStyle = style;
+    // }
 
     const saveMarkerStyle = () => {
         const obj = {
