@@ -255,6 +255,7 @@ const TagWidget = props => {
     const [markerList, setMarkerList] = React.useState(allMarkers);
     const [selectedColor, setSelectedColor] = React.useState(null);
     const [markerTitle, setMarkerTitle] = React.useState("");
+    const [markerStyle, setMarkerStyle] = React.useState("highlight");
     // let markerTitle = "";
     let newMarkerStyle = "highlight";
     // let selectedColor;
@@ -297,9 +298,9 @@ const TagWidget = props => {
           }
 
           <div class="r6o-widget-marker-styles">
-            <button type="button" className={newMarkerStyle == "highlight" ? 'selected' : 'not-selected'} onClick={() => {setMarkerStyle("highlight")}}>Korostus</button>
-            <button type="button" className={newMarkerStyle == "underline" ? 'selected' : 'not-selected'} onClick={() => {setMarkerStyle("underline")}}>Alleviivaus</button>
-            <button type="button" className={newMarkerStyle == "strikethrough" ? 'selected' : 'not-selected'} onClick={() => {setMarkerStyle("strikethrough")}}>Yliviivaus</button>
+            <button type="button" className={markerStyle == "highlight" ? 'selected' : 'not-selected'} onClick={() => {setMarkerStyle("highlight")}}>Korostus</button>
+            <button type="button" className={markerStyle == "underline" ? 'selected' : 'not-selected'} onClick={() => {setMarkerStyle("underline")}}>Alleviivaus</button>
+            <button type="button" className={markerStyle == "strikethrough" ? 'selected' : 'not-selected'} onClick={() => {setMarkerStyle("strikethrough")}}>Yliviivaus</button>
           </div>
 
           <button type="button" onClick={() => {saveMarkerStyle()}}>Tallenna merkintä</button>
