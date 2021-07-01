@@ -206,6 +206,7 @@ const TagWidget = props => {
 
     const toggleAddForm = () => {
         props.showAddForm = !props.showAddForm;
+        alert(props.showAddForm);
     }
 
     let selectedMarker = null;
