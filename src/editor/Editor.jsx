@@ -127,16 +127,20 @@ export default class Editor extends Component {
     this.updateCurrentAnnotation({
       body: this.state.currentAnnotation.bodies.map(body => {
         console.log("BPBP", body, previous, updated);
-        let previousCheck = null;
+        let previousIndex, updateObj;
+
         if (Array.isArray(previous)) {
-            previousCheck = previous.filter(p => p === body);
+            previousIndex = previous.findIndex(p => p === body);
+            if (previousIndex >= 0) {
+                updateObj = updated[previousIndex];
+            }
         }
 
-        console.log("PREVCHECK", previousCheck);
+        console.log("PREVCHECK", previousIndex);
 
-        if (previousCheck.length) {
-            console.log("TÄMÄ", { ...previousCheck[0], ...this.creationMeta(previousCheck[0]) });
-            return { ...previousCheck[0], ...this.creationMeta(previousCheck[0]) }
+        if (updateObj) {
+            console.log("TÄMÄ", { ...updateObj, ...this.creationMeta(updateObj) });
+            return { ...updateObj, ...this.creationMeta(updateObj) }
         }
 
         return ((body === previous) || previousCheck) ? { ...updated, ...this.creationMeta(updated) } : body
