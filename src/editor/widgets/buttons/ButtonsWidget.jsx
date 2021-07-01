@@ -204,14 +204,20 @@ const TagWidget = props => {
         alert(selectedColor);
     }
 
+    const toggleAddForm = {
+        showAddForm = !showAddForm;
+    }
+
     let selectedMarker = null;
+    let showAddForm = false;
+    let markerTitle = "";
     let selectedColor;
 
     return (
         <div className="r6o-widget r6o-button r6o-nodrag">
 
       { markerStyles.length > 0 && 
-        <div class="button-list">
+        <div class="r6o-widget-button-list">
         { markerStyles.map(marker => 
 
             <button className={tags.length && tags[0].value == marker.title ? 'selected' : 'not-selected'} type="button" onClick={() => {buttonClick(marker)}}>
@@ -223,19 +229,29 @@ const TagWidget = props => {
         </div>
       }
 
-      { colors.length > 0 && 
-        <div class="button-list">
-        { colors.map(color => 
+      <div class="r6o-add-new-marker">
 
-            <div class="r6o-button-color-box" style={'background-color:' + color} onClick={() => {selectColor(color)}}>
-                Valitse
+        <button onClick={() => toggleAddForm() }type="button">Lisää oma tyyli</button>
+
+        <div class="r6o-marker-form">
+
+            <input type="text" value={markerTitle} placeholder="Merkintä">
+
+          { colors.length > 0 && 
+            <div class="r6o-widget-color-list">
+            { colors.map(color => 
+
+                <div class="r6o-button-color-box" style={'background-color:' + color} onClick={() => {selectColor(color)}}>
+                    Valitse
+                </div>
+
+            )}
             </div>
+          }
 
-        )}
         </div>
-      }
 
-
+      </div>
 
     </div>
     )
