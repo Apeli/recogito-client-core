@@ -233,11 +233,12 @@ const TagWidget = props => {
             style: newMarkerStyle,
         };
 
-        markerStyles.push(obj);
+        markerList.push(obj);
         console.log("NEW", obj);
     }
 
     const [showAddForm, setShowAddForm] = React.useState(false)
+    const [markerList] = React.useState(markerStyles);
 
     let markerTitle = "";
     let newMarkerStyle = "highlight";
@@ -246,9 +247,9 @@ const TagWidget = props => {
     return (
         <div className="r6o-widget r6o-button r6o-nodrag">
 
-      { markerStyles.length > 0 && 
+      { markerList.length > 0 && 
         <div class="r6o-widget-button-list">
-        { markerStyles.map(marker => 
+        { markerList.map(marker => 
 
             <button className={tags.length && tags[0].value == marker.title ? 'selected' : 'not-selected'} type="button" onClick={() => {buttonClick(marker)}}>
               <span>{marker.title}</span>
