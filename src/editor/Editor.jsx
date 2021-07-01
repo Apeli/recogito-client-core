@@ -127,6 +127,13 @@ export default class Editor extends Component {
     this.updateCurrentAnnotation({
       body: this.state.currentAnnotation.bodies.map(body => {
         console.log("BPBP", body, previous);
+        let previousCheck = null;
+        if (Array.isArray(previous)) {
+            previousCheck = previous.filter(p => p === body);
+            if (previousCheck.length) {
+                previous = previousCheck[0];
+            }
+        }
         return body === previous ? { ...updated, ...this.creationMeta(updated) } : body
       })
         
