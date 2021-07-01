@@ -147,7 +147,7 @@ const TagWidget = props => {
             console.log("HEPHEP000");
             props.onAppendBody(bodies, true);
         } else {
-            console.log("HEPPPPPP", draftTag)
+            console.log("HEPPPPPP", draftTag, props)
             props.onUpdateBody(draftTag, bodies, true);
         }
 

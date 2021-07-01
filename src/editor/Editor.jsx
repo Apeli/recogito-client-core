@@ -123,6 +123,7 @@ export default class Editor extends Component {
    * @param saveImmediately set to true to save & close immediately
    */
   onUpdateBody = (previous, updated, saveImmediately) => { 
+    console.log("onUpdateBody", this, previous, updated, saveImmediately);
     this.updateCurrentAnnotation({
       body: this.state.currentAnnotation.bodies.map(body => 
         body === previous ? { ...updated, ...this.creationMeta(updated) } : body)
