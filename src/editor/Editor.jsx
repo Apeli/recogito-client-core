@@ -125,8 +125,11 @@ export default class Editor extends Component {
   onUpdateBody = (previous, updated, saveImmediately) => { 
     console.log("onUpdateBody", this, previous, updated, saveImmediately);
     this.updateCurrentAnnotation({
-      body: this.state.currentAnnotation.bodies.map(body => 
-        body === previous ? { ...updated, ...this.creationMeta(updated) } : body)
+      body: this.state.currentAnnotation.bodies.map(body => {
+        console.log("BPBP", body, previous);
+        return body === previous ? { ...updated, ...this.creationMeta(updated) } : body)
+      }
+        
     }, saveImmediately);
   }
 
