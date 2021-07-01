@@ -232,6 +232,8 @@ const TagWidget = props => {
             color: selectedColor,
             style: newMarkerStyle,
         };
+
+        markerStyles.push(obj);
         console.log("NEW", obj);
     }
 
@@ -259,7 +261,7 @@ const TagWidget = props => {
 
       <div class="r6o-add-new-marker">
 
-        <button onClick={() => toggleAddForm() }type="button">Lisää oma tyyli</button>
+        <button onClick={() => toggleAddForm() }type="button">Lisää oma vakiomerkintä</button>
 
         { showAddForm && 
         <div class="r6o-marker-form">
