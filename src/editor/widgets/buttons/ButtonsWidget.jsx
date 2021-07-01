@@ -221,14 +221,6 @@ const TagWidget = props => {
         setShowAddForm(!showAddForm);
     }
 
-    // const setMarkerTitle = (e) => {
-    //     markerTitle = e.target.value;
-    // }
-
-    // const setMarkerStyle = (style) => {
-    //     newMarkerStyle = style;
-    // }
-
     const saveMarkerStyle = () => {
         const obj = {
             title: markerTitle,
@@ -251,14 +243,26 @@ const TagWidget = props => {
 
     }
 
+    const removeMarker = marker => {
+
+        let list = localStorage.getItem("user-annotations");
+        list = JSON.parse(list);
+        list = list.filter(item => {
+            return item.title != marker.title
+        })
+
+        const newList = [...markerStyles, ...list]
+        setMarkerList(newList);
+
+        localStorage.setItem("user-annotations", JSON.stringify(list));
+    }
+
     const [showAddForm, setShowAddForm] = React.useState(false)
     const [markerList, setMarkerList] = React.useState(allMarkers);
     const [selectedColor, setSelectedColor] = React.useState(null);
     const [markerTitle, setMarkerTitle] = React.useState("");
     const [markerStyle, setMarkerStyle] = React.useState("highlight");
-    // let markerTitle = "";
-    let newMarkerStyle = "highlight";
-    // let selectedColor;
+    
 
     return (
         <div className="r6o-widget r6o-button r6o-nodrag">
@@ -268,6 +272,10 @@ const TagWidget = props => {
         { markerList.map(marker => 
 
             <button className={tags.length && tags[0].value == marker.title ? 'selected' : 'not-selected'} type="button" onClick={() => {buttonClick(marker)}}>
+              {
+                !marker.main && 
+                <span class="r6o-button-list-remove" onClick={() => {removeMarker(marker)}}&times;</span>
+              }
               <span>{marker.title}</span>
               <span class="marker-circle" style={'background-color:' + marker.color}></span>
             </button>
@@ -303,7 +311,7 @@ const TagWidget = props => {
             <button type="button" className={markerStyle == "strikethrough" ? 'selected' : 'not-selected'} onClick={() => {setMarkerStyle("strikethrough")}}>Yliviivaus</button>
           </div>
 
-          <button type="button" onClick={() => {saveMarkerStyle()}}>Tallenna merkintä</button>
+          <button type="button" class="saveNew" onClick={() => {saveMarkerStyle()}}>Tallenna merkintä</button>
 
         </div>
         }
