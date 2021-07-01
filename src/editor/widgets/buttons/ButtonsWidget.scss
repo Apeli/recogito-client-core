@@ -106,11 +106,14 @@
 }
 
 .r6o-button .r6o-add-new-marker button {
-    text-align: center!important;
+    text-align: center !important;
     display: block;
     background: #FFF;
     border: 1px solid #CCC;
+
     &.saveNewMarker {
         width: calc(100% - 10px);
+        margin-left: 5px;
+        margin-bottom: 10px;
     }
 }
