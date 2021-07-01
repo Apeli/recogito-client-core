@@ -144,6 +144,7 @@ const TagWidget = props => {
         } else if (prev.length > 0 && updated.length === 0) {
             props.onRemoveBody(draftTag, true);
         } else {
+            log("HEP", draftTag)
             props.onUpdateBody(draftTag, bodies, true);
         }
 
