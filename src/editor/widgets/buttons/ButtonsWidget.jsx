@@ -233,6 +233,7 @@ const TagWidget = props => {
 
         <button onClick={() => toggleAddForm() }type="button">Lisää oma tyyli</button>
 
+        { showAddForm && 
         <div class="r6o-marker-form">
 
             <input type="text" value={markerTitle} placeholder="Merkintä" />
@@ -250,6 +251,7 @@ const TagWidget = props => {
           }
 
         </div>
+        }
 
       </div>
 
