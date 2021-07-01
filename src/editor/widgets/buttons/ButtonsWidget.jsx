@@ -243,7 +243,9 @@ const TagWidget = props => {
 
     }
 
-    const removeMarker = marker => {
+    const removeMarker = (e, marker) => {
+
+        e.stopPropagation();
 
         let list = localStorage.getItem("user-annotations");
         list = JSON.parse(list);
@@ -274,7 +276,7 @@ const TagWidget = props => {
             <button className={tags.length && tags[0].value == marker.title ? 'selected' : 'not-selected'} type="button" onClick={() => {buttonClick(marker)}}>
               {
                 !marker.main && 
-                <span class="r6o-button-list-remove" onClick={() => {removeMarker(marker)}}>&times;</span>
+                <span class="r6o-button-list-remove" onClick={(e) => {removeMarker(e, marker)}}>&times;</span>
               }
               <span class="no-pointer">{marker.title}</span>
               <span class="marker-circle no-pointer" style={'background-color:' + marker.color}></span>
