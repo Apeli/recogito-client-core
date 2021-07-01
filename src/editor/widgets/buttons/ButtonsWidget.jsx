@@ -140,11 +140,11 @@ const TagWidget = props => {
 
         if (prev.length === 0 && updated.length > 0) {
             // props.onAppendBody([{ ...draftTag, value: updated }]);
-            props.onAppendBody(bodies);
+            props.onAppendBody(bodies, true);
         } else if (prev.length > 0 && updated.length === 0) {
-            props.onRemoveBody(draftTag);
+            props.onRemoveBody(draftTag, true);
         } else {
-            props.onUpdateBody(draftTag, bodies);
+            props.onUpdateBody(draftTag, bodies, true);
         }
 
         if (marker.title.toLowerCase() === "kommentti") {
@@ -154,11 +154,11 @@ const TagWidget = props => {
         }
 
         console.log("PROPS", props);
-        setTimeout(() => {
-            let btns = document.querySelectorAll(".r6o-btn");
-            let btn = [...btns].pop();
-            btn.click();
-        }, 1000)
+        // setTimeout(() => {
+        //     let btns = document.querySelectorAll(".r6o-btn");
+        //     let btn = [...btns].pop();
+        //     btn.click();
+        // }, 1000)
 
     }
 
