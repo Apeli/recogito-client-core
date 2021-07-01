@@ -206,6 +206,10 @@ const TagWidget = props => {
         setShowAddForm(!showAddForm);
     }
 
+    const setMarkerTitle = (e) => {
+        console.log("setMarkerTitle",e);
+    }
+
     const [showAddForm, setShowAddForm] = React.useState(false)
     const [markerTitle] = React.useState("")
 
@@ -235,7 +239,7 @@ const TagWidget = props => {
         { showAddForm && 
         <div class="r6o-marker-form">
 
-            <input type="text" value={markerTitle} placeholder="Merkintä" />
+            <input type="text" onKeyUp={(e) => {setMarkerTitle(e)}} placeholder="Merkintä" />
 
           { colors.length > 0 && 
             <div class="r6o-widget-color-list">
