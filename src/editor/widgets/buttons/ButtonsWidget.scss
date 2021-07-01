@@ -17,7 +17,7 @@
     }
 }
 
-.r6o-button button span {
+.r6o-button button span:not(.r6o-button-list-remove) {
     pointer-events: none;
 }
 
