@@ -239,7 +239,15 @@ const TagWidget = props => {
         const newList = [...markerList, obj]
         setMarkerList(newList);
         
-        localStorage.setItem("user-annotations", JSON.stringify(newList));
+        let list = localStorage.getItem("user-annotations");
+        if (list) {
+            list = JSON.parse(list);
+            list.push(obj)
+        } else {
+            list = [obj];
+        }
+
+        localStorage.setItem("user-annotations", JSON.stringify(list));
 
     }
 
