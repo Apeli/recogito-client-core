@@ -1,7 +1,11 @@
 /** Sets the editor position and determines a proper orientation **/
 const setPosition = (wrapperEl, editorEl, selectedEl) => {
 
+  alert(1);
+
   console.log("setPosition START");
+  console.log("wrapperEl", wrapperEl);
+
 
   // Container element offset
   const containerBounds = wrapperEl.getBoundingClientRect();
