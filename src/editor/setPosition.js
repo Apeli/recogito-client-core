@@ -4,7 +4,7 @@ const setPosition = (wrapperEl, editorEl, selectedEl) => {
 
 
   console.log("setPosition START");
-  console.log("wrapperEl", wrapperEl);
+  console.log("wrapperEl", wrapperEl, editorEl, selectedEl);
 
 
   // Container element offset

@@ -59,16 +59,20 @@ export default class Editor extends Component {
   initResizeObserver = () => {
     if (window?.ResizeObserver) {
       const resizeObserver = new ResizeObserver(() => {
-        if (!this.state.dragged)
+        if (!this.state.dragged) {
+          console.log("setPosition 1")
           setPosition(this.props.wrapperEl, this.element.current, this.props.selectedElement);
+        }
       });
 
       resizeObserver.observe(this.props.wrapperEl);
       return () => resizeObserver.disconnect();
     } else {
       // Fire setPosition manually *only* for devices that don't support ResizeObserver
-      if (!this.state.dragged)
+      if (!this.state.dragged) {
+        console.log("setPosition 2")
         setPosition(this.props.wrapperEl, this.element.current, this.props.selectedElement);
+      }
     }  
   }
 
