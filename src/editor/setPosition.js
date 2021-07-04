@@ -1,7 +1,7 @@
 /** Sets the editor position and determines a proper orientation **/
 const setPosition = (wrapperEl, editorEl, selectedEl) => {
 
-  alert(1);
+
 
   console.log("setPosition START");
   console.log("wrapperEl", wrapperEl);
@@ -74,6 +74,8 @@ const setPosition = (wrapperEl, editorEl, selectedEl) => {
     console.log("test 4")
     editorEl.style.left = `${-containerBounds.left}px`;
   }
+
+  alert(1);
 
 }
 
