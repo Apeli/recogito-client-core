@@ -21,6 +21,9 @@ const setPosition = (wrapperEl, editorEl, selectedEl) => {
 
   // Default orientation (upwards arrow, at bottom-left of shape)
   const { left, top, right, height, bottom } = selectedEl.getBoundingClientRect();
+
+  return;
+
   editorEl.style.top = `${top + height - containerBounds.top}px`;
   editorEl.style.left = `${left - containerBounds.left}px`;
 
