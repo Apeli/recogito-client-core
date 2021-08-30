@@ -228,6 +228,10 @@ const TagWidget = props => {
             style: markerStyle,
         };
 
+        if (!obj.color) {
+            obj.color = "rgb(0,0,0)"
+        }
+
         const newList = [...markerList, obj]
         setMarkerList(newList);
         
@@ -240,7 +244,7 @@ const TagWidget = props => {
         }
 
         localStorage.setItem("user-annotations", JSON.stringify(list));
-
+        window.pub("set_user_annotations", JSON.stringify(list));
     }
 
     const removeMarker = (e, marker) => {
@@ -257,6 +261,7 @@ const TagWidget = props => {
         setMarkerList(newList);
 
         localStorage.setItem("user-annotations", JSON.stringify(list));
+        window.pub("set_user_annotations", JSON.stringify(list));
     }
 
     const [showAddForm, setShowAddForm] = React.useState(false)
